@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"> <title>Muhammad Attiyah - Home</title> <link href="http://muattiyah.com"/> <link type="application/atom+xml" rel="self" href="http://muattiyah.com/atom.xml"/> <updated>Wed, 30 May 2018 16:25:58 +0200</updated> <author> <name>Muhammad Attiyah</name> </author> <entry> <link type="text/html" rel="alternate" href="http://muattiyah.com/posts/ADTs-Algebraic-Data-Types-in-Haskell.html"/> <title>ADTs (Algebraic Data Types) in Haskell</title> <published>2018-05-30</published> <updated>2018-05-30</updated> <author> <name>Muhammad Attiyah</name> <uri>http://muattiyah.com</uri> </author> <content type="html">&lt;p&gt;Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. &lt;code&gt;Bool&lt;/code&gt; and &lt;code&gt;Int&lt;/code&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"> <title>Muhammad Attiyah - Home</title> <link href="http://muattiyah.com"/> <link type="application/atom+xml" rel="self" href="http://muattiyah.com/atom.xml"/> <updated>Wed, 30 May 2018 16:29:13 +0200</updated> <author> <name>Muhammad Attiyah</name> </author> <entry> <link type="text/html" rel="alternate" href="http://muattiyah.com/posts/ADTs-Algebraic-Data-Types-in-Haskell.html"/> <title>ADTs (Algebraic Data Types) in Haskell</title> <published>2018-05-30</published> <updated>2018-05-30</updated> <author> <name>Muhammad Attiyah</name> <uri>http://muattiyah.com</uri> </author> <content type="html">&lt;p&gt;Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. &lt;code&gt;Bool&lt;/code&gt; and &lt;code&gt;Int&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Single Constructor Without Arguments&lt;/h2&gt;
 
@@ -133,12 +133,11 @@ if we add or remove arguments from the data constructor. Also, we have to keep i
 
 &lt;p&gt;Unfortunately records have some issues, refer to &lt;a href=&quot;https://ghc.haskell.org/trac/ghc/wiki/Records&quot; title=&quot;Issues with records in Haskell&quot;&gt;this&lt;/a&gt; for more details.&lt;/p&gt;
 
-&lt;h2&gt;Parametrized&lt;/h2&gt;
+&lt;h2&gt;Parametrized Types&lt;/h2&gt;
 
-&lt;p&gt;Type constructors can be parametrized with types, the standard &lt;code&gt;Prelude&lt;/code&gt; library define the &lt;code&gt;Maybe&lt;/code&gt; type:
-&lt;code&gt;haskell
-data Maybe a = Nothing | Just a
-&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Type constructors can be parametrized with types, the standard &lt;code&gt;Prelude&lt;/code&gt; library define the &lt;code&gt;Maybe&lt;/code&gt; type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Maybe&lt;/span&gt; a &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Nothing&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Just&lt;/span&gt; a&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Here, &lt;code&gt;Maybe&lt;/code&gt; is parametrized with the generic type &lt;code&gt;a&lt;/code&gt; which can take on any type, this is a bit like &lt;strong&gt;Generics&lt;/strong&gt; in other languages. The &lt;code&gt;Maybe&lt;/code&gt; type
 allows us to express the nonexistence of a value, for example when trying to take the head of a list, instead of erroneously applying head to an empty
