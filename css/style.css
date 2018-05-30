@@ -149,6 +149,20 @@ ol {
 		color: #a2a0a0;
 }
 
+code {
+		background-color: #fd8d8d;
+		font-size: 1.5rem;
+		font-family: 'IBM Plex Mono', monospace;
+}
+
+pre {
+		background-color: #a2a0a0;
+}
+
+pre > code {
+		background-color: transparent;
+		font-size: 1.3rem;
+}
 
 @media screen and (max-width:768px) {
 		body {

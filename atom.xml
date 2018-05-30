@@ -1,5 +1,177 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"> <title>Muhammad Attiyah - Home</title> <link href="http://muattiyah.com"/> <link type="application/atom+xml" rel="self" href="http://muattiyah.com/atom.xml"/> <updated>Fri, 25 May 2018 21:30:06 +0200</updated> <author> <name>Muhammad Attiyah</name> </author> <entry> <link type="text/html" rel="alternate" href="http://muattiyah.com/posts/Mathematical-Induction.html"/> <title>Mathematical Induction</title> <published>2017-06-12</published> <updated>2017-06-12</updated> <author> <name>Muhammad Attiyah</name> <uri>http://muattiyah.com</uri> </author> <content type="html">&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"> <title>Muhammad Attiyah - Home</title> <link href="http://muattiyah.com"/> <link type="application/atom+xml" rel="self" href="http://muattiyah.com/atom.xml"/> <updated>Wed, 30 May 2018 15:57:50 +0200</updated> <author> <name>Muhammad Attiyah</name> </author> <entry> <link type="text/html" rel="alternate" href="http://muattiyah.com/posts/ADTs-Algebraic-Data-Types-in-Haskell.html"/> <title>ADTs (Algebraic Data Types) in Haskell</title> <published>2018-05-30</published> <updated>2018-05-30</updated> <author> <name>Muhammad Attiyah</name> <uri>http://muattiyah.com</uri> </author> <content type="html">&lt;p&gt;Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. &lt;code&gt;Bool&lt;/code&gt; and &lt;code&gt;Int&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Single Constructor Without Arguments&lt;/h2&gt;
+
+&lt;p&gt;The most simple data type we can construct in Haskell is a type with a single constructor,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Frame&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;MkFrame&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;MkFrame&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Examining the type in &lt;code&gt;ghci&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;:&amp;gt; :type MkFrame
+MkFrame :: Frame
+
+:&amp;gt; :type x
+x :: Frame&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In this example, we use the &lt;code&gt;data&lt;/code&gt; keyword to signify a &lt;strong&gt;Data Type&lt;/strong&gt;, &lt;code&gt;Frame&lt;/code&gt; is the name of that type and we refer to it as a &lt;strong&gt;Type Constructor&lt;/strong&gt;. &lt;code&gt;MkFrame&lt;/code&gt; is called a &lt;strong&gt;Data Constructor&lt;/strong&gt; and this is how we create new instances of the type &lt;code&gt;Frame&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Enums&lt;/h2&gt;
+
+&lt;p&gt;Enums (Enumeration Types), also referred to as &lt;em&gt;Sum Types&lt;/em&gt; allow us to design a type that is reminiscent of a Logical OR. Suppose we want to have a type that will represent a day in the week, the day will be either Saturday, or Monday, or Tuesday, ...etc.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Day&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Saturday&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Sunday&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Monday&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Tuesday&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Wednesday&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Thursday&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Friday&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Tuesday&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Examining the type in &lt;code&gt;ghci&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;:&amp;gt; :type Saturday
+Saturday :: Day
+
+:&amp;gt; :type day
+pday :: Day&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Pattern Matching&lt;/h3&gt;
+
+&lt;p&gt;We can pattern match on our data type like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;function&quot;&gt;dayNumber&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Day&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;dayNumber&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Saturday&lt;/span&gt;  &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 1
+&lt;span class=&quot;function&quot;&gt;dayNumber&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Sunday&lt;/span&gt;    &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 2
+&lt;span class=&quot;function&quot;&gt;dayNumber&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Monday&lt;/span&gt;    &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 3
+&lt;span class=&quot;function&quot;&gt;dayNumber&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Tuesday&lt;/span&gt;   &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 4
+&lt;span class=&quot;function&quot;&gt;dayNumber&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Wednesday&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 5
+&lt;span class=&quot;function&quot;&gt;dayNumber&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Thursday&lt;/span&gt;  &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 6
+&lt;span class=&quot;function&quot;&gt;dayNumber&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Friday&lt;/span&gt;    &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 7&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or using a &lt;code&gt;case of&lt;/code&gt; statement:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;function&quot;&gt;dayNumberCase&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Day&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;dayNumberCase&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt;
+&amp;nbsp; &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; x &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt;
+&amp;nbsp;   &lt;span class=&quot;variable&quot;&gt;Saturday&lt;/span&gt;  &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; 0
+&amp;nbsp;   &lt;span class=&quot;variable&quot;&gt;Sunday&lt;/span&gt;    &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; 2
+&amp;nbsp;   &lt;span class=&quot;variable&quot;&gt;Monday&lt;/span&gt;    &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; 3
+&amp;nbsp;   &lt;span class=&quot;variable&quot;&gt;Tuesday&lt;/span&gt;   &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; 4
+&amp;nbsp;   &lt;span class=&quot;variable&quot;&gt;Wednesday&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; 5
+&amp;nbsp;   &lt;span class=&quot;variable&quot;&gt;Thursday&lt;/span&gt;  &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; 6
+&amp;nbsp;   &lt;span class=&quot;variable&quot;&gt;Friday&lt;/span&gt;    &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; 7&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Constructors with arguments&lt;/h2&gt;
+
+&lt;p&gt;We can also declare types whose constructor takes one or more arguments, these are commonly referred to as &lt;em&gt;Product Types&lt;/em&gt;. Let&#039;s say we want to represent a point in the cartesian coordinate system i.e. a point with &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; coordinates,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;mypoint&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;P&lt;/span&gt; 1 2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Examining in &lt;code&gt;ghci&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;:&amp;gt; :type P
+P :: Int -&amp;gt; Int -&amp;gt; Point
+
+:&amp;gt; :type mypoint
+mypoint :: Point
+
+:&amp;gt; :type P 1 2
+P 1 2 :: Point&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&#039;s a convention in Haskell code to sometimes label the data constructor with the same label as the type constructor, to illustrate this with our &lt;code&gt;Point&lt;/code&gt; example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Point&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;mypoint&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Point&lt;/span&gt; 1 2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Record Syntax&lt;/h2&gt;
+
+&lt;p&gt;Let&#039;s say we want to define a &lt;code&gt;User&lt;/code&gt; type that has the &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; of a user, we can try to do something like this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where &lt;code&gt;name&lt;/code&gt; is of type &lt;code&gt;String&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; is of type &lt;code&gt;Int&lt;/code&gt;. However, in our application, we will want to get the name and age from an instance of this data type, we can do this like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;function&quot;&gt;getName&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;String&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;getName&lt;/span&gt; &lt;span class=&quot;paren1&quot;&gt;(&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; name _&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; name
+
+&lt;span class=&quot;function&quot;&gt;getAge&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;getAge&lt;/span&gt; &lt;span class=&quot;paren1&quot;&gt;(&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; _ age&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; age&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;but, as you can imagine, this would get too daunting and verbose if our data constructor takes a large number of arguments, and we&#039;ll have to modify all these accessor functions
+if we add or remove arguments from the data constructor. Also, we have to keep in mind the position of each argument. Enter records, records allow us to write:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt;
+&amp;nbsp;   &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name  &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;String&lt;/span&gt;
+&amp;nbsp;   , age   &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;
+&amp;nbsp;   &lt;/span&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;comment&quot;&gt;-- Create a User&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt;
+&amp;nbsp;   &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Oliver Heaviside&quot;&lt;/span&gt;
+&amp;nbsp;   , age &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 74
+&amp;nbsp;   &lt;/span&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;comment&quot;&gt;-- This still works&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;James Clerk Maxwell&quot;&lt;/span&gt; 48&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and get accessor functions for free, these will be automagically generated:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;function&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;String&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We also get a nice field update syntax&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;function&quot;&gt;changeAge&lt;/span&gt; user newAge &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; user &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; age &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; newAge&lt;/span&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;function&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt;
+&amp;nbsp;   &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Oliver Heaviside&quot;&lt;/span&gt;
+&amp;nbsp;   , age &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 74
+&amp;nbsp;   &lt;/span&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;function&quot;&gt;newuser&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; changeAge user1 42&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Record Downsides&lt;/h3&gt;
+
+&lt;p&gt;Unfortunately records have some issues, refer to &lt;a href=&quot;https://ghc.haskell.org/trac/ghc/wiki/Records&quot; title=&quot;Issues with records in Haskell&quot;&gt;this&lt;/a&gt; for more details.&lt;/p&gt;
+
+&lt;h2&gt;Parametrized&lt;/h2&gt;
+
+&lt;p&gt;Type constructors can be parametrized with types, the standard &lt;code&gt;Prelude&lt;/code&gt; library define the &lt;code&gt;Maybe&lt;/code&gt; type:
+&lt;code&gt;haskell
+data Maybe a = Nothing | Just a
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code&gt;Maybe&lt;/code&gt; is parametrized with the generic type &lt;code&gt;a&lt;/code&gt; which can take on any type, this is a bit like &lt;strong&gt;Generics&lt;/strong&gt; in other languages. The &lt;code&gt;Maybe&lt;/code&gt; type
+allows us to express the nonexistence of a value, for example when trying to take the head of a list, instead of erroneously applying head to an empty
+list, we can defend against this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;function&quot;&gt;lhead&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;paren1&quot;&gt;[&lt;span class=&quot;code&quot;&gt;a&lt;/span&gt;]&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Maybe&lt;/span&gt; a
+&lt;span class=&quot;function&quot;&gt;lhead&lt;/span&gt; &lt;span class=&quot;paren1&quot;&gt;[&lt;span class=&quot;code&quot;&gt;&lt;/span&gt;]&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Nothing&lt;/span&gt;
+&lt;span class=&quot;function&quot;&gt;lhead&lt;/span&gt; xs &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Just&lt;/span&gt; &lt;span class=&quot;paren1&quot;&gt;(&lt;span class=&quot;code&quot;&gt;head xs&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And, playing around in &lt;code&gt;ghci&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;:&amp;gt; :type lhead []
+lhead [] :: Maybe a
+
+:&amp;gt; :type lhead [&#039;a&#039;]
+lhead [&#039;a&#039;] :: Maybe Char
+
+:&amp;gt; :type lhead [1]
+lhead [1] :: Num a =&amp;gt; Maybe a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Recursive Types&lt;/h2&gt;
+
+&lt;p&gt;Haskell allows us to define types in terms of themselves &lt;em&gt;recursive types&lt;/em&gt;. Let&#039;s illustrate this by making a type for a &lt;strong&gt;Binary Tree&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;data BinTree a = EmptyTree
+               | Node a (BinTree a) (BinTree a)
+
+mytree = Node 1 EmptyTree EmptyTree&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here, we constructed &lt;code&gt;mytree&lt;/code&gt; to be a tree with a single node, with an empty left and right subtrees. We can also construct a tree with 3 nodes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;function&quot;&gt;mytree2&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Node&lt;/span&gt; 1 &lt;span class=&quot;paren1&quot;&gt;(&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;variable&quot;&gt;Node&lt;/span&gt; 2 &lt;span class=&quot;variable&quot;&gt;EmptyNode&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;EmptyNode&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt; &lt;span class=&quot;paren1&quot;&gt;(&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;variable&quot;&gt;Node&lt;/span&gt; 3 &lt;span class=&quot;variable&quot;&gt;EmptyNode&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;EmptyNode&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+</content> </entry><entry> <link type="text/html" rel="alternate" href="http://muattiyah.com/posts/Mathematical-Induction.html"/> <title>Mathematical Induction</title> <published>2017-06-12</published> <updated>2017-06-12</updated> <author> <name>Muhammad Attiyah</name> <uri>http://muattiyah.com</uri> </author> <content type="html">&lt;br /&gt;
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 1801 651.57&quot;&gt;&lt;defs&gt;&lt;style&gt;.cls-1{fill:#4f2837;stroke:#1ba5b8;}.cls-1,.cls-3{stroke-miterlimit:10;}.cls-2{fill:#141411;opacity:0.18;}.cls-3{fill:none;stroke-width:2px;}.cls-3,.cls-4{stroke:#fff;}.cls-4{fill:#1d1d1b;stroke-width:0.65px;}.cls-5{font-size:123px;fill:#fff;font-family:CrimsonText-Bold, Crimson Text;font-weight:700;}&lt;/style&gt;&lt;/defs&gt;&lt;title&gt;induction&lt;/title&gt;&lt;g id=&quot;Background&quot;&gt;&lt;rect class=&quot;cls-1&quot; x=&quot;0.5&quot; y=&quot;0.5&quot; width=&quot;1800&quot; height=&quot;600&quot;/&gt;&lt;/g&gt;&lt;g id=&quot;Arrow&quot;&gt;&lt;path class=&quot;cls-2&quot; d=&quot;M1375.6,539.76c-41.56-36-76.09-124.66-4.59-169.32,139.7-87.26,13.24-163.74-3.37-174H1245.28l242.6-169.91L1751.29,195.4l-130.47,1.07c12.74,12.21,108.66,98.75-15.88,179.08-83.8,54-42.37,130.76,8.21,164.12Z&quot; transform=&quot;translate(0.5 0.5)&quot;/&gt;&lt;/g&gt;&lt;g id=&quot;Ladder&quot;&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1481.98&quot; y1=&quot;24.6&quot; x2=&quot;1393.6&quot; y2=&quot;560.08&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1499.82&quot; y1=&quot;24.6&quot; x2=&quot;1588.5&quot; y2=&quot;560.08&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1481.81&quot; y1=&quot;25.62&quot; x2=&quot;1499.99&quot; y2=&quot;25.62&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1481.72&quot; y1=&quot;26.16&quot; x2=&quot;1500.08&quot; y2=&quot;26.16&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1481.58&quot; y1=&quot;27.05&quot; x2=&quot;1500.22&quot; y2=&quot;27.05&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1481.39&quot; y1=&quot;28.21&quot; x2=&quot;1500.41&quot; y2=&quot;28.21&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1481.19&quot; y1=&quot;29.41&quot; x2=&quot;1500.61&quot; y2=&quot;29.41&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1480.94&quot; y1=&quot;30.9&quot; x2=&quot;1500.86&quot; y2=&quot;30.9&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1480.6&quot; y1=&quot;32.98&quot; x2=&quot;1501.21&quot; y2=&quot;32.98&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1480.16&quot; y1=&quot;35.61&quot; x2=&quot;1501.64&quot; y2=&quot;35.61&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1479.57&quot; y1=&quot;39.21&quot; x2=&quot;1502.24&quot; y2=&quot;39.21&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1479.13&quot; y1=&quot;41.87&quot; x2=&quot;1502.68&quot; y2=&quot;41.87&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1478.55&quot; y1=&quot;45.38&quot; x2=&quot;1503.26&quot; y2=&quot;45.38&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1477.87&quot; y1=&quot;49.26&quot; x2=&quot;1503.86&quot; y2=&quot;49.26&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1477.15&quot; y1=&quot;53.57&quot; x2=&quot;1504.57&quot; y2=&quot;53.57&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1476.41&quot; y1=&quot;58.37&quot; x2=&quot;1505.41&quot; y2=&quot;58.37&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1475.46&quot; y1=&quot;63.76&quot; x2=&quot;1506.25&quot; y2=&quot;63.76&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1474.45&quot; y1=&quot;69.86&quot; x2=&quot;1507.26&quot; y2=&quot;69.86&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1473.3&quot; y1=&quot;76.82&quot; x2=&quot;1508.4&quot; y2=&quot;76.82&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1471.98&quot; y1=&quot;84.82&quot; x2=&quot;1509.73&quot; y2=&quot;84.82&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1470.43&quot; y1=&quot;94.13&quot; x2=&quot;1511.26&quot; y2=&quot;94.13&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1468.7&quot; y1=&quot;105.09&quot; x2=&quot;1513.15&quot; y2=&quot;105.09&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1466.45&quot; y1=&quot;118.19&quot; x2=&quot;1515.23&quot; y2=&quot;118.19&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1463.81&quot; y1=&quot;134.12&quot; x2=&quot;1517.86&quot; y2=&quot;134.12&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1460.64&quot; y1=&quot;153.9&quot; x2=&quot;1521.23&quot; y2=&quot;153.9&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1456.36&quot; y1=&quot;179.13&quot; x2=&quot;1525.29&quot; y2=&quot;179.13&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1450.84&quot; y1=&quot;212.42&quot; x2=&quot;1530.79&quot; y2=&quot;212.42&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1444.57&quot; y1=&quot;249.35&quot; x2=&quot;1537.04&quot; y2=&quot;249.35&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1432.06&quot; y1=&quot;325.84&quot; x2=&quot;1549.51&quot; y2=&quot;325.84&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1438.92&quot; y1=&quot;285.5&quot; x2=&quot;1543.03&quot; y2=&quot;285.5&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1414.3&quot; y1=&quot;434.69&quot; x2=&quot;1567.73&quot; y2=&quot;434.69&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1402.09&quot; y1=&quot;508.5&quot; x2=&quot;1579.96&quot; y2=&quot;508.5&quot;/&gt;&lt;line class=&quot;cls-3&quot; x1=&quot;1423.4&quot; y1=&quot;379.5&quot; x2=&quot;1558.59&quot; y2=&quot;379.5&quot;/&gt;&lt;/g&gt;&lt;g id=&quot;People&quot;&gt;&lt;g id=&quot;Figure_with_Child&quot; data-name=&quot;Figure with Child&quot;&gt;&lt;rect class=&quot;cls-4&quot; x=&quot;1441.6&quot; y=&quot;466.04&quot; width=&quot;11.96&quot; height=&quot;57.23&quot;/&gt;&lt;polygon class=&quot;cls-4&quot; points=&quot;1492.64 536.11 1492.64 466.04 1453.56 466.04 1453.56 538.4 1453.58 538.4 1453.58 599.31 1467.43 599.31 1467.43 537.94 1478.85 537.94 1478.85 599.31 1492.71 599.31 1492.71 536.11 1492.64 536.11&quot;/&gt;&lt;circle class=&quot;cls-4&quot; cx=&quot;1472.57&quot; cy=&quot;449.16&quot; r=&quot;16.88&quot;/&gt;&lt;polygon class=&quot;cls-4&quot; points=&quot;1542.74 522.35 1509.83 504.81 1509.41 513.14 1542.33 530.67 1542.74 522.35&quot;/&gt;&lt;rect class=&quot;cls-4&quot; x=&quot;1565.84&quot; y=&quot;520.52&quot; width=&quot;7.07&quot; height=&quot;32.64&quot;/&gt;&lt;polygon class=&quot;cls-4&quot; points=&quot;1542.74 561.94 1542.74 520.52 1565.84 520.52 1565.84 563.3 1565.83 563.3 1565.83 599.31 1557.64 599.31 1557.64 563.02 1550.88 563.02 1550.88 599.31 1542.69 599.31 1542.69 561.94 1542.74 561.94&quot;/&gt;&lt;circle class=&quot;cls-4&quot; cx=&quot;1554.61&quot; cy=&quot;510.54&quot; r=&quot;9.98&quot;/&gt;&lt;polygon class=&quot;cls-4&quot; points=&quot;1504.59 466.04 1524.38 521.04 1509.41 513.14 1492.63 466.04 1504.59 466.04&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g id=&quot;Child&quot;&gt;&lt;rect class=&quot;cls-4&quot; x=&quot;1509.74&quot; y=&quot;337.53&quot; width=&quot;7.7&quot; height=&quot;35.52&quot;/&gt;&lt;rect class=&quot;cls-4&quot; x=&quot;1476.85&quot; y=&quot;337.53&quot; width=&quot;7.7&quot; height=&quot;35.52&quot;/&gt;&lt;polygon class=&quot;cls-4&quot; points=&quot;1484.59 382.62 1484.59 337.53 1509.74 337.53 1509.74 384.09 1509.73 384.09 1509.73 423.28 1500.81 423.28 1500.81 383.79 1493.46 383.79 1493.46 423.28 1484.55 423.28 1484.55 382.62 1484.59 382.62&quot;/&gt;&lt;circle class=&quot;cls-4&quot; cx=&quot;1497.51&quot; cy=&quot;326.67&quot; r=&quot;10.86&quot;/&gt;&lt;rect class=&quot;cls-4&quot; x=&quot;1504.85&quot; y=&quot;197.64&quot; width=&quot;5.38&quot; height=&quot;24.84&quot;/&gt;&lt;rect class=&quot;cls-4&quot; x=&quot;1481.85&quot; y=&quot;197.64&quot; width=&quot;5.38&quot; height=&quot;24.84&quot;/&gt;&lt;polygon class=&quot;cls-4&quot; points=&quot;1487.26 229.16 1487.26 197.64 1504.85 197.64 1504.85 230.19 1504.84 230.19 1504.84 257.59 1498.6 257.59 1498.6 229.98 1493.46 229.98 1493.46 257.59 1487.23 257.59 1487.23 229.16 1487.26 229.16&quot;/&gt;&lt;circle class=&quot;cls-4&quot; cx=&quot;1496.29&quot; cy=&quot;190.04&quot; r=&quot;7.59&quot;/&gt;&lt;rect class=&quot;cls-4&quot; x=&quot;1495.13&quot; y=&quot;85.37&quot; width=&quot;2.2&quot; height=&quot;10.16&quot;/&gt;&lt;rect class=&quot;cls-4&quot; x=&quot;1485.72&quot; y=&quot;85.37&quot; width=&quot;2.2&quot; height=&quot;10.16&quot;/&gt;&lt;polygon class=&quot;cls-4&quot; points=&quot;1487.93 98.27 1487.93 85.37 1495.13 85.37 1495.13 98.69 1495.13 98.69 1495.13 109.91 1492.57 109.91 1492.57 98.61 1490.47 98.61 1490.47 109.91 1487.92 109.91 1487.92 98.27 1487.93 98.27&quot;/&gt;&lt;circle class=&quot;cls-4&quot; cx=&quot;1491.63&quot; cy=&quot;82.26&quot; r=&quot;3.11&quot;/&gt;&lt;text class=&quot;cls-5&quot; transform=&quot;translate(128.13 257.58)&quot;&gt;Mathematical &lt;tspan x=&quot;0&quot; y=&quot;147.6&quot;&gt;Induction&lt;/tspan&gt;&lt;/text&gt;&lt;/g&gt;&lt;/svg&gt;
 
 &lt;p&gt;Suppose you want to sum up the first &lt;span class=&quot;math inline&quot;&gt;10&lt;/span&gt; natural numbers &lt;span class=&quot;math inline&quot;&gt;1, 2, 3, ...&lt;/span&gt;&lt;/p&gt;
