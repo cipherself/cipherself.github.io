@@ -114,15 +114,15 @@ P 1 2 :: Point</code></pre>
 if we add or remove arguments from the data constructor. Also, we have to keep in mind the position of each argument. Enter records, records allow us to write:</p>
 
 <pre><code><span class="code"><span class="keyword">data</span> <span class="variable">User</span> <span class="keyword">=</span> <span class="variable">User</span>
-&nbsp;   <span class="paren1">{<span class="code"> name  <span class="keyword">::</span> <span class="variable">String</span>
-&nbsp;   , age   <span class="keyword">::</span> <span class="variable">Int</span>
-&nbsp;   </span>}</span>
+&nbsp; <span class="paren1">{<span class="code"> name  <span class="keyword">::</span> <span class="variable">String</span>
+&nbsp; , age   <span class="keyword">::</span> <span class="variable">Int</span>
+&nbsp; </span>}</span>
 
 <span class="comment">-- Create a User</span>
 <span class="function">user1</span> <span class="keyword">=</span> <span class="variable">User</span>
-&nbsp;   <span class="paren1">{<span class="code"> name <span class="keyword">=</span> <span class="string">"Oliver Heaviside"</span>
-&nbsp;   , age <span class="keyword">=</span> 74
-&nbsp;   </span>}</span>
+&nbsp; <span class="paren1">{<span class="code"> name <span class="keyword">=</span> <span class="string">"Oliver Heaviside"</span>
+&nbsp; , age <span class="keyword">=</span> 74
+&nbsp; </span>}</span>
 
 <span class="comment">-- This still works</span>
 <span class="function">user2</span> <span class="keyword">=</span> <span class="variable">User</span> <span class="string">"James Clerk Maxwell"</span> 48</span></code></pre>
@@ -137,9 +137,9 @@ if we add or remove arguments from the data constructor. Also, we have to keep i
 <pre><code><span class="code"><span class="function">changeAge</span> user newAge <span class="keyword">=</span> user <span class="paren1">{<span class="code"> age <span class="keyword">=</span> newAge</span>}</span>
 
 <span class="function">user1</span> <span class="keyword">=</span> <span class="variable">User</span>
-&nbsp;   <span class="paren1">{<span class="code"> name <span class="keyword">=</span> <span class="string">"Oliver Heaviside"</span>
-&nbsp;   , age <span class="keyword">=</span> 74
-&nbsp;   </span>}</span>
+&nbsp; <span class="paren1">{<span class="code"> name <span class="keyword">=</span> <span class="string">"Oliver Heaviside"</span>
+&nbsp; , age <span class="keyword">=</span> 74
+&nbsp; </span>}</span>
 
 <span class="function">newuser</span> <span class="keyword">=</span> changeAge user1 42</span></code></pre>
 

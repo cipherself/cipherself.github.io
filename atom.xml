@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom"> <title>Muhammad Attiyah - Home</title> <link href="http://muattiyah.com"/> <link type="application/atom+xml" rel="self" href="http://muattiyah.com/atom.xml"/> <updated>Wed, 30 May 2018 16:21:59 +0200</updated> <author> <name>Muhammad Attiyah</name> </author> <entry> <link type="text/html" rel="alternate" href="http://muattiyah.com/posts/ADTs-Algebraic-Data-Types-in-Haskell.html"/> <title>ADTs (Algebraic Data Types) in Haskell</title> <published>2018-05-30</published> <updated>2018-05-30</updated> <author> <name>Muhammad Attiyah</name> <uri>http://muattiyah.com</uri> </author> <content type="html">&lt;p&gt;Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. &lt;code&gt;Bool&lt;/code&gt; and &lt;code&gt;Int&lt;/code&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"> <title>Muhammad Attiyah - Home</title> <link href="http://muattiyah.com"/> <link type="application/atom+xml" rel="self" href="http://muattiyah.com/atom.xml"/> <updated>Wed, 30 May 2018 16:25:58 +0200</updated> <author> <name>Muhammad Attiyah</name> </author> <entry> <link type="text/html" rel="alternate" href="http://muattiyah.com/posts/ADTs-Algebraic-Data-Types-in-Haskell.html"/> <title>ADTs (Algebraic Data Types) in Haskell</title> <published>2018-05-30</published> <updated>2018-05-30</updated> <author> <name>Muhammad Attiyah</name> <uri>http://muattiyah.com</uri> </author> <content type="html">&lt;p&gt;Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. &lt;code&gt;Bool&lt;/code&gt; and &lt;code&gt;Int&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Single Constructor Without Arguments&lt;/h2&gt;
 
@@ -100,15 +100,15 @@ P 1 2 :: Point&lt;/code&gt;&lt;/pre&gt;
 if we add or remove arguments from the data constructor. Also, we have to keep in mind the position of each argument. Enter records, records allow us to write:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt;
-&amp;nbsp;   &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name  &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;String&lt;/span&gt;
-&amp;nbsp;   , age   &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;
-&amp;nbsp;   &lt;/span&gt;}&lt;/span&gt;
+&amp;nbsp; &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name  &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;String&lt;/span&gt;
+&amp;nbsp; , age   &lt;span class=&quot;keyword&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;Int&lt;/span&gt;
+&amp;nbsp; &lt;/span&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;comment&quot;&gt;-- Create a User&lt;/span&gt;
 &lt;span class=&quot;function&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt;
-&amp;nbsp;   &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Oliver Heaviside&quot;&lt;/span&gt;
-&amp;nbsp;   , age &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 74
-&amp;nbsp;   &lt;/span&gt;}&lt;/span&gt;
+&amp;nbsp; &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Oliver Heaviside&quot;&lt;/span&gt;
+&amp;nbsp; , age &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 74
+&amp;nbsp; &lt;/span&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;comment&quot;&gt;-- This still works&lt;/span&gt;
 &lt;span class=&quot;function&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;James Clerk Maxwell&quot;&lt;/span&gt; 48&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -123,9 +123,9 @@ if we add or remove arguments from the data constructor. Also, we have to keep i
 &lt;pre&gt;&lt;code&gt;&lt;span class=&quot;code&quot;&gt;&lt;span class=&quot;function&quot;&gt;changeAge&lt;/span&gt; user newAge &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; user &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; age &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; newAge&lt;/span&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;function&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;User&lt;/span&gt;
-&amp;nbsp;   &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Oliver Heaviside&quot;&lt;/span&gt;
-&amp;nbsp;   , age &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 74
-&amp;nbsp;   &lt;/span&gt;}&lt;/span&gt;
+&amp;nbsp; &lt;span class=&quot;paren1&quot;&gt;{&lt;span class=&quot;code&quot;&gt; name &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;Oliver Heaviside&quot;&lt;/span&gt;
+&amp;nbsp; , age &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; 74
+&amp;nbsp; &lt;/span&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;function&quot;&gt;newuser&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;=&lt;/span&gt; changeAge user1 42&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
