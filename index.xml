@@ -6,10 +6,22 @@
     <description>Recent content on Muhammad Attiyah - Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate>
     
 	<atom:link href="http://muattiyah.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python Internals – CPython Bytecode</title>
+      <link>http://muattiyah.com/posts/python-internals-cpython-bytecode/</link>
+      <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
+      
+      <guid>http://muattiyah.com/posts/python-internals-cpython-bytecode/</guid>
+      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.
+I will be using CPython 3.6.5.
+A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.
+We passed arguments to the compile function as follows:</description>
+    </item>
     
     <item>
       <title>ADTs (Algebraic Data Types) in Haskell</title>

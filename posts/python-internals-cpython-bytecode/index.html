@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Python Internals – CPython Bytecode</title>
+
+		<link rel="stylesheet" href="/css/normalize.css">
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vidaloka">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500">
+
+		
+
+    
+		
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-100940716-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	</head>
+
+
+<body>
+	<header>
+	<a href="/">
+		<svg id="logo" viewBox="0 0 404.45 497.19">
+			<g transform="translate(-176.4 -169.51)">
+				<g transform="translate(-94.286 80)">
+					<path d="m492.29 89.506v184.29h182.86v-184.29h-182.86zm46.176 47.604h90.506v89.076h-90.506v-89.076z"/>
+					<path d="m629.43 272.28v46.245h45.713v-46.245h-45.713z"/>
+					<path d="m493.57 316.93h181.43v45.714h-181.43z"/>
+					<path d="m493.57 361.93v138.57h45.714v-138.57h-45.714z"/>
+					<path d="m630 360.22h44.286v226.47h-44.286z"/>
+					<path d="m271.14 542.36h363.43v44.286h-363.43z"/>
+					<path d="m271.07 497.01h44.286v45.714h-44.286z"/>
+					<path d="m270.69 90.934v184.29h181.59v-184.29h-45.894v47.604h0.0369v89.076h-89.881v-89.076h0.11055v-47.604h-45.967z"/>
+					<path d="m270.94 316.01v184.64h180.78v-184.64h-180.78zm45.65 47.696h89.476v89.249h-89.476v-89.249z"/>
+					<path d="m270.86 272.28v46.245h45.713v-46.245h-45.713z"/>
+				</g>
+			</g>
+		</svg>
+	</a>
+</header>
+
+
+	
+
+	
+	<h1 class="post-title">Python Internals – CPython Bytecode</h1>
+	
+
+	<div class="info">June 16, 2018</div>
+
+	<div class="tags info">
+		
+			<a href="/tags/programming">programming</a>
+		
+			<a href="/tags/python">python</a>
+		
+	</div>
+
+	
+
+<p>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.</p>
+
+<p>I will be using CPython 3.6.5.</p>
+
+<h2 id="a-simple-example">A simple example</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codestr</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">print(&#39;Witness me!&#39;)
+</span><span style="color:#4e9a06">&#34;&#34;&#34;</span>
+
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">compiled_codestr</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">compile</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">codestr</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;&lt;string&gt;&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;exec&#39;</span><span style="color:#000;font-weight:bold">)</span>
+
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">type</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">compiled_codestr</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#a40000">&#39;</span><span style="color:#000">code</span><span style="color:#4e9a06">&#39;&gt;</span></code></pre></div>
+<p>Whoo, we have created our first <a href="https://docs.python.org/3.6/c-api/code.html">code object</a>.</p>
+
+<p>We passed arguments to the <a href="https://docs.python.org/3/library/functions.html#compile">compile function</a> as follows:</p>
+
+<ul>
+<li><p><code>codestr</code> is, as you might have guessed, our code as a string.</p></li>
+
+<li><p>The second argument is the filename of the file from which the code was read, since we passed this in an interpreter, we defined it as <code>'&lt;string&gt;'</code> as per the documentation.</p></li>
+
+<li><p>The third argument is called <code>mode</code> in the documentation and it specifies what kind of code must be compiled, we could have used <code>eval</code> since we&rsquo;re compiling a single expression,
+refer to the <a href="https://docs.python.org/3/library/functions.html#compile">compile function documentation</a> for more details on the <code>mode</code> argument and refer to
+<a href="https://stackoverflow.com/questions/2220699/whats-the-difference-between-eval-exec-and-compile-in-python">this</a> for a detailed explanation of <code>eval</code>, <code>exec</code>, and the differences between them.</p></li>
+</ul>
+
+<p>Let&rsquo;s see some of the attributes that this code object has,</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">compiled_codestr</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_consts</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Witness me!&#39;</span><span style="color:#000;font-weight:bold">,)</span>
+
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">compiled_codestr</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_filename</span>
+<span style="color:#4e9a06">&#39;&lt;string&gt;&#39;</span></code></pre></div>
+<p><code>co_consts</code> is a tuple of constants, you can see the string that we had in our <code>codestr</code> here as the first element of the tuple.</p>
+
+<p><code>co_filename</code> is the filename which this code object belongs to. Since we defined this as <code>'&lt;string&gt;'</code> in our compile function, that&rsquo;s what we get here.</p>
+
+<p>We will explore more attributes (but not all) of the <code>code</code> object later on, let&rsquo;s see the list of all available attributes:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">dir</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">compiled_codestr</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;__class__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__delattr__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__dir__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__doc__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__eq__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__format__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__ge__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__getattribute__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__gt__&#39;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="color:#4e9a06">&#39;__hash__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__init__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__init_subclass__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__le__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__lt__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__ne__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__new__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__reduce__&#39;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="color:#4e9a06">&#39;__reduce_ex__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__repr__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__setattr__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__sizeof__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__str__&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;__subclasshook__&#39;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="color:#4e9a06">&#39;co_argcount&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_cellvars&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_code&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_consts&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_filename&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_firstlineno&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_flags&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_freevars&#39;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="color:#4e9a06">&#39;co_kwonlyargcount&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_lnotab&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_name&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_names&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_nlocals&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_stacksize&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;co_varnames&#39;</span><span style="color:#000;font-weight:bold">]</span></code></pre></div>
+<p>We&rsquo;re interested in the attributes that start with <code>co_</code>, for a complete description of these attributes
+you can refer to:</p>
+
+<ul>
+<li><p><a href="https://docs.python.org/3.6/c-api/code.html">Code objects</a> in CPython&rsquo;s documentation.</p></li>
+
+<li><p>A description of the attributes of a code object is available in this <a href="https://docs.python.org/3/library/inspect.html#types-and-members">table</a>, under the <code>code</code> entry.</p></li>
+
+<li><p>The definition of the <a href="https://github.com/python/cpython/blob/3.6/Include/code.h#L21"><code>PyCodeObject</code></a> struct in CPython.</p></li>
+</ul>
+
+<p>Well, we now have constructed a <code>code</code> object, we&rsquo;ve looked at some of its attributes, what else can we do with it? Well, we can <code>exec</code> it:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">exec</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">compiled_codestr</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000">Witness</span> <span style="color:#000">me</span><span style="color:#a40000">!</span></code></pre></div>
+<h2 id="a-more-complicated-example">A more complicated example</h2>
+
+<p>Now let&rsquo;s look at the code object of a function</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">hello</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">):</span>
+<span style="color:#ce5c00;font-weight:bold">...</span>     <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Hello,&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span>
+
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">hello</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">__code__</span>
+
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">type</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">codeobj</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000">code</span></code></pre></div>
+<p>Since this function takes one argument, let&rsquo;s see if the <code>co_argcount</code> attribute of the <code>code</code> object reflects this</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_argcount</span>
+<span style="color:#0000cf;font-weight:bold">1</span></code></pre></div>
+<p>This code object should also have the string that we use in the call to <code>print</code> in its <code>co_consts</code> attribute</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_consts</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;Hello,&#39;</span><span style="color:#000;font-weight:bold">)</span></code></pre></div>
+<p>We&rsquo;d also like to see the name of the function,, we can find this by checking the <code>co_name</code> attribute</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_name</span>
+<span style="color:#000">hello</span></code></pre></div>
+<p>Let&rsquo;s check out the local variables of our <code>codeobj</code></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># Number of locals</span>
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_nlocals</span>
+<span style="color:#0000cf;font-weight:bold">1</span>
+
+<span style="color:#8f5902;font-style:italic"># Names of locals</span>
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_varnames</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;name&#39;</span><span style="color:#000;font-weight:bold">,)</span></code></pre></div>
+<p>Now, let&rsquo;s look at one final attribute of <code>code</code> objects, <code>co_code</code></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_code</span>
+<span style="color:#4e9a06">b</span><span style="color:#4e9a06">&#39;t</span><span style="color:#4e9a06">\x00</span><span style="color:#4e9a06">d</span><span style="color:#4e9a06">\x01</span><span style="color:#4e9a06">|</span><span style="color:#4e9a06">\x00\x83\x02\x01\x00</span><span style="color:#4e9a06">d</span><span style="color:#4e9a06">\x00</span><span style="color:#4e9a06">S</span><span style="color:#4e9a06">\x00</span><span style="color:#4e9a06">&#39;</span></code></pre></div>
+<p>oh, look at that, it&rsquo;s a <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a> object. But what does it represent? This is the bytecode representation of the code of the <code>hello</code> function.
+Yes, it looks unwieldy to understand, but fortunately there&rsquo;s a better way to understand code objects.</p>
+
+<h2 id="disassembly">Disassembly</h2>
+
+<p>The CPython virtual machine (CPython VM) is a stack-based VM, this means that the bytecode works by pushing things onto the stack and popping things off of it.</p>
+
+<p>Let&rsquo;s see an example, continuing with the <code>code</code> object of the <code>hello</code> function that we have defined before.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">dis</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">dis</span>
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">dis</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">dis</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">codeobj</span><span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#0000cf;font-weight:bold">2</span>           <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">LOAD_GLOBAL</span>              <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">)</span>
+              <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#000">LOAD_CONST</span>               <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Hello,&#39;</span><span style="color:#000;font-weight:bold">)</span>
+              <span style="color:#0000cf;font-weight:bold">4</span> <span style="color:#000">LOAD_FAST</span>                <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span>
+              <span style="color:#0000cf;font-weight:bold">6</span> <span style="color:#000">CALL_FUNCTION</span>            <span style="color:#0000cf;font-weight:bold">2</span>
+              <span style="color:#0000cf;font-weight:bold">8</span> <span style="color:#000">POP_TOP</span>
+             <span style="color:#0000cf;font-weight:bold">10</span> <span style="color:#000">LOAD_CONST</span>               <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">)</span>
+             <span style="color:#0000cf;font-weight:bold">12</span> <span style="color:#000">RETURN_VALUE</span></code></pre></div>
+<p>Before we dig into the meaning of the instructions, let&rsquo;s first define what each column in the previous output means,</p>
+
+<pre><code>  2           0 LOAD_GLOBAL              0 (print)
+  |           |         |                |   |
+  |           |         |                |   +--------- Interpretation of the parameters in parentheses.
+  |           |         |                +------------- Operation Parameters.
+  |           |         +------------------------------ The operation code name.
+  |           +---------------------------------------- The address of the instruction.
+  +---------------------------------------------------- The line number, for the first instruction of each line.
+</code></pre>
+
+<p>Sometimes there can be more columns, but we&rsquo;ll stick to the ones that were generated from our <code>code</code> object, for a complete description of the output of <code>dis()</code>
+you can refer to its <a href="https://docs.python.org/3.5/library/dis.html#dis.disassemble">documentation</a>.</p>
+
+<p>Now let&rsquo;s dig into the disassembly and figure out what each line means</p>
+
+<pre><code>  2           0 LOAD_GLOBAL              0 (print)
+</code></pre>
+
+<p>Here, the <code>LOAD_GLOBAL</code> instruction will load the global <code>co_names[namei]</code> onto the stack, in this case it&rsquo;s loading <code>co_names[0]</code>, let&rsquo;s verify
+this by inspection our <code>code</code> object</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_names</span>
+<span style="color:#4e9a06">``</span><span style="color:#a40000">`</span><span style="color:#000">python</span>
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">dis</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">dis</span>
+<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">dis</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">dis</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">codeobj</span><span style="color:#000;font-weight:bold">)</span>
+  <span style="color:#0000cf;font-weight:bold">2</span>           <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">LOAD_GLOBAL</span>              <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">)</span>
+              <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#000">LOAD_CONST</span>               <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Hello,&#39;</span><span style="color:#000;font-weight:bold">)</span>
+              <span style="color:#0000cf;font-weight:bold">4</span> <span style="color:#000">LOAD_FAST</span>                <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span>
+              <span style="color:#0000cf;font-weight:bold">6</span> <span style="color:#000">CALL_FUNCTION</span>            <span style="color:#0000cf;font-weight:bold">2</span>
+              <span style="color:#0000cf;font-weight:bold">8</span> <span style="color:#000">POP_TOP</span>
+             <span style="color:#0000cf;font-weight:bold">10</span> <span style="color:#000">LOAD_CONST</span>               <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">)</span>
+             <span style="color:#0000cf;font-weight:bold">12</span> <span style="color:#000">RETURN_VALUE</span></code></pre></div>
+<p>Before we dig into the meaning of the instructions, let&rsquo;s first define what each column in the previous output means,</p>
+
+<pre><code>  2           0 LOAD_GLOBAL              0 (print)
+  |           |         |                |   |
+  |           |         |                |   +--------- Interpretation of the parameters in parentheses.
+  |           |         |                +------------- Operation Parameters.
+  |           |         +------------------------------ The operation code name.
+  |           +---------------------------------------- The address of the instruction.
+  +---------------------------------------------------- The line number, for the first instruction of each line.
+</code></pre>
+
+<p>Sometimes there can be more columns, but we&rsquo;ll stick to the ones that were generated from our <code>code</code> object, for a complete description of the output of <code>dis()</code>
+you can refer to its <a href="https://docs.python.org/3.5/library/dis.html#dis.disassemble">documentation</a>.</p>
+
+<p>Now let&rsquo;s dig into the disassembly and figure out what each line means</p>
+
+<pre><code>  2           0 LOAD_GLOBAL              0 (print)
+</code></pre>
+
+<p>Here, the <code>LOAD_GLOBAL</code> instruction will push the global <code>co_names[namei]</code> onto the stack, in this case it&rsquo;s loading <code>co_names[0]</code>, let&rsquo;s verify
+this by inspection our <code>code</code> object</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_names</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;print&#39;</span><span style="color:#000;font-weight:bold">,)</span></code></pre></div>
+<p>Cool, now let&rsquo;s move to the 2nd line</p>
+
+<pre><code>              2 LOAD_CONST               1 ('Hello,')
+</code></pre>
+
+<p>The <code>LOAD_CONST</code> instruction will push <code>co_consts[consti]</code> onto the stack, in our case this will load <code>co_consts[1]</code>, verifying</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_consts</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;Hello,&#39;</span><span style="color:#000;font-weight:bold">)</span></code></pre></div>
+<p>Moving onto the next line</p>
+
+<pre><code>              4 LOAD_FAST                0 (name)
+</code></pre>
+
+<p>The <code>LOAD_FAST</code> instruction will push a reference to the local <code>co_varnames[var_num]</code> onto the stack, verifying</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_varnames</span>
+<span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;name&#39;</span><span style="color:#000;font-weight:bold">,)</span></code></pre></div>
+<p>Alright, things are about to get a little more interesting, but first let&rsquo;s review what our stack looks like currently.</p>
+
+<p>We&rsquo;ve done 3 operations which push things onto the stack, roughly:</p>
+
+<pre><code>push print
+push 'Hello,'
+push (ref name)
+</code></pre>
+
+<p>Translating this into a visual representation, this is what our stack looks like:</p>
+
+<pre>
+   |        |
+   +--------+
+   |ref name|
+   +--------+
+   |'Hello,'|
+   +--------+
+   | print  |
+   +--------+
+</pre>
+
+<p>Alright, let&rsquo;s continue looking at the disassembly, the next line is</p>
+
+<pre><code>              6 CALL_FUNCTION            2
+</code></pre>
+
+<p>The <code>CALL_FUNCTION</code> as obvious from its name will call a function, but what does the argument that it takes, <code>2</code> in our case, mean?
+Well, it indicates the number of parameters that the function will be called with, this number is interpreted as a 2-byte (16-bit) number,
+where the low byte indicates the number of positional parameters, the high byte the number of keyword parameters.</p>
+
+<p>In our case it simply means that the function will take 2 positional parameters by popping them off the stack, the order of the parameters with regards to passing it to
+the function is reversed. In other words, the rightmost parameter is on the top of the stack.</p>
+
+<p>So to summarize what <code>CALL_FUNCTION</code> will do here:</p>
+
+<ul>
+<li><p>Pop 2 arguments off of the stack.</p></li>
+
+<li><p>Pass them to the function that&rsquo;s below them in the stack, in our case <code>print</code>.</p></li>
+
+<li><p>Push the return value of the function onto the stack.</p></li>
+</ul>
+
+<p>Awesome, let&rsquo;s move to the next line in the disassembly</p>
+
+<pre><code>              8 POP_TOP
+</code></pre>
+
+<p>The instruction <code>POP_TOP</code> will simply remove the item on the top of the stack, so we&rsquo;ve now removed the value that was returned by our last <code>CALL_FUNCTION</code> instruction.</p>
+
+<p>The final 2 lines in our disassembly are</p>
+
+<pre><code>             10 LOAD_CONST               0 (None)
+             12 RETURN_VALUE
+</code></pre>
+
+<p>The first will <code>LOAD_CONST</code> as before, the constant being <code>None</code>. The second will return the value on the top of stack i.e. it will return <code>None</code> to the caller of the function.</p>
+
+<p>WOOHOO! We&rsquo;ve now compiled python code into bytecode, disassembled it, and explored the disassembly. The <a href="https://docs.python.org/3.5/library/dis.html"><code>dis</code></a> module documentation
+has information on more bytecode instructions if you want to dig deeper.</p>
+
+<h2 id="decompiler">Decompiler</h2>
+
+<p>Suppose you somehow stumbled upon python bytecode in the wild, maybe from malware, maybe from proprietary code and you want to understand what&rsquo;s going on
+but you are not in the mood to read disassembly, what can you do? Well you can use a decompiler, in this case we&rsquo;ll use <a href="https://github.com/rocky/python-uncompyle6">uncompyle6</a>,
+go ahead and install it.</p>
+
+<p>First, let&rsquo;s start by creating a file <code>hello.py</code> which contains the <code>hello</code> function</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">hello</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">):</span>
+	<span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Hello,&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span></code></pre></div>
+<p>Now we want to compile this file into python bytecode, let&rsquo;s do this by running this in a shell</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt;: python -m compileall .</code></pre></div>
+<p>You will now find a <code>__pycache__</code> directory in your current-working-directory,</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt;: <span style="color:#204a87">cd</span> __pycache__
+&gt;: uncompyle6 hello.cpython-36.pyc</code></pre></div>
+<p>This should output</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># ...</span>
+<span style="color:#8f5902;font-style:italic"># ...</span>
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">hello</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Hello,&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#8f5902;font-style:italic"># okay decompiling hello.cpython-36.pyc</span></code></pre></div>
+<p>Voila, you now have your source-code back.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><p><a href="https://docs.python.org/3.6/c-api/code.html">Code Objects</a></p></li>
+
+<li><p><a href="https://docs.python.org/3/library/functions.html#compile">Compile Function</a></p></li>
+
+<li><p><a href="https://stackoverflow.com/questions/2220699/whats-the-difference-between-eval-exec-and-compile-in-python">Difference between <code>eval</code> and <code>exec</code></a></p></li>
+
+<li><p><a href="https://docs.python.org/3/library/inspect.html#types-and-members">A description of the attributes of a code object is available in this table, under the <code>code</code> entry</a></p></li>
+
+<li><p><a href="https://github.com/python/cpython/blob/3.6/Include/code.h#L21">The definition of the <code>PyCodeObject</code> struct in the CPython source-code</a></p></li>
+
+<li><p><a href="https://docs.python.org/3.5/library/dis.html">The <code>dis</code> module</a></p></li>
+
+<li><p><a href="https://github.com/rocky/python-uncompyle6">uncompyle6</a></p></li>
+</ul>
+
+
+	<hr>
+<footer>
+	<a href="/index.xml">RSS Feed</a>
+</footer>
+
+</body>
+</html>
