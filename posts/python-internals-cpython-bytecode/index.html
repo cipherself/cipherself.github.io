@@ -309,7 +309,7 @@ the function is reversed. In other words, the rightmost parameter is on the top 
 <p>WOOHOO! We&rsquo;ve now compiled python code into bytecode, disassembled it, and explored the disassembly. The <a href="https://docs.python.org/3.5/library/dis.html"><code>dis</code></a> module documentation
 has information on more bytecode instructions if you want to dig deeper.</p>
 
-<h2 id="decompiler">Decompiler</h2>
+<h2 id="decompilation">Decompilation</h2>
 
 <p>Suppose you somehow stumbled upon python bytecode in the wild, maybe from malware, maybe from proprietary code and you want to understand what&rsquo;s going on
 but you are not in the mood to read disassembly, what can you do? Well you can use a decompiler, in this case we&rsquo;ll use <a href="https://github.com/rocky/python-uncompyle6">uncompyle6</a>,
@@ -345,7 +345,8 @@ go ahead and install it.</p>
 
 <li><p><a href="https://github.com/python/cpython/blob/3.6/Include/code.h#L21">The definition of the <code>PyCodeObject</code> struct in the CPython source-code</a></p></li>
 
-<li><p><a href="https://docs.python.org/3.5/library/dis.html">The <code>dis</code> module</a></p></li>
+<li><p><a href="https://docs.python.org/3.5/library/dis.html">The <code>dis</code> module</a>
+p</p></li>
 
 <li><p><a href="https://github.com/rocky/python-uncompyle6">uncompyle6</a></p></li>
 </ul>
