@@ -195,40 +195,8 @@ you can refer to its <a href="https://docs.python.org/3.5/library/dis.html#dis.d
 <pre><code>  2           0 LOAD_GLOBAL              0 (print)
 </code></pre>
 
-<p>Here, the <code>LOAD_GLOBAL</code> instruction will load the global <code>co_names[namei]</code> onto the stack, in this case it&rsquo;s loading <code>co_names[0]</code>, let&rsquo;s verify
-this by inspection our <code>code</code> object</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_names</span>
-<span style="color:#4e9a06">``</span><span style="color:#a40000">`</span><span style="color:#000">python</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">dis</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">dis</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">dis</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">dis</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">codeobj</span><span style="color:#000;font-weight:bold">)</span>
-  <span style="color:#0000cf;font-weight:bold">2</span>           <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">LOAD_GLOBAL</span>              <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">)</span>
-              <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#000">LOAD_CONST</span>               <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Hello,&#39;</span><span style="color:#000;font-weight:bold">)</span>
-              <span style="color:#0000cf;font-weight:bold">4</span> <span style="color:#000">LOAD_FAST</span>                <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span>
-              <span style="color:#0000cf;font-weight:bold">6</span> <span style="color:#000">CALL_FUNCTION</span>            <span style="color:#0000cf;font-weight:bold">2</span>
-              <span style="color:#0000cf;font-weight:bold">8</span> <span style="color:#000">POP_TOP</span>
-             <span style="color:#0000cf;font-weight:bold">10</span> <span style="color:#000">LOAD_CONST</span>               <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">)</span>
-             <span style="color:#0000cf;font-weight:bold">12</span> <span style="color:#000">RETURN_VALUE</span></code></pre></div>
-<p>Before we dig into the meaning of the instructions, let&rsquo;s first define what each column in the previous output means,</p>
-
-<pre><code>  2           0 LOAD_GLOBAL              0 (print)
-  |           |         |                |   |
-  |           |         |                |   +--------- Interpretation of the parameters in parentheses.
-  |           |         |                +------------- Operation Parameters.
-  |           |         +------------------------------ The operation code name.
-  |           +---------------------------------------- The address of the instruction.
-  +---------------------------------------------------- The line number, for the first instruction of each line.
-</code></pre>
-
-<p>Sometimes there can be more columns, but we&rsquo;ll stick to the ones that were generated from our <code>code</code> object, for a complete description of the output of <code>dis()</code>
-you can refer to its <a href="https://docs.python.org/3.5/library/dis.html#dis.disassemble">documentation</a>.</p>
-
-<p>Now let&rsquo;s dig into the disassembly and figure out what each line means</p>
-
-<pre><code>  2           0 LOAD_GLOBAL              0 (print)
-</code></pre>
-
 <p>Here, the <code>LOAD_GLOBAL</code> instruction will push the global <code>co_names[namei]</code> onto the stack, in this case it&rsquo;s loading <code>co_names[0]</code>, let&rsquo;s verify
-this by inspection our <code>code</code> object</p>
+this by inspecting our <code>code</code> object</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">codeobj</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">co_names</span>
 <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;print&#39;</span><span style="color:#000;font-weight:bold">,)</span></code></pre></div>
 <p>Cool, now let&rsquo;s move to the 2nd line</p>
