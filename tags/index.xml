@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Muhammad Attiyah - Home</title>
@@ -6,31 +6,13 @@
     <description>Recent content in Tags on Muhammad Attiyah - Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate>
     
 	<atom:link href="http://muattiyah.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Haskell</title>
-      <link>http://muattiyah.com/tags/haskell/</link>
-      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://muattiyah.com/tags/haskell/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Math</title>
-      <link>http://muattiyah.com/tags/math/</link>
-      <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://muattiyah.com/tags/math/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Programming</title>
+      <title>programming</title>
       <link>http://muattiyah.com/tags/programming/</link>
       <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
       
@@ -39,11 +21,29 @@
     </item>
     
     <item>
-      <title>Python</title>
+      <title>python</title>
       <link>http://muattiyah.com/tags/python/</link>
       <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
       
       <guid>http://muattiyah.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>haskell</title>
+      <link>http://muattiyah.com/tags/haskell/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://muattiyah.com/tags/haskell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>http://muattiyah.com/tags/math/</link>
+      <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://muattiyah.com/tags/math/</guid>
       <description></description>
     </item>
     

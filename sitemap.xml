@@ -1,9 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://muattiyah.com/</loc>
+    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://muattiyah.com/posts/</loc>
+    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://muattiyah.com/tags/programming/</loc>
+    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://muattiyah.com/tags/python/</loc>
+    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://muattiyah.com/posts/python-internals-cpython-bytecode/</loc>
+    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://muattiyah.com/tags/</loc>
     <lastmod>2018-06-16T23:51:11+02:00</lastmod>
   </url>
   
@@ -13,50 +38,18 @@
   </url>
   
   <url>
-    <loc>http://muattiyah.com/posts/mathematical-induction/</loc>
-    <lastmod>2017-06-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://muattiyah.com/tags/haskell/</loc>
     <lastmod>2018-05-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://muattiyah.com/tags/math/</loc>
     <lastmod>2017-06-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://muattiyah.com/</loc>
-    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://muattiyah.com/posts/</loc>
-    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://muattiyah.com/tags/programming/</loc>
-    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://muattiyah.com/tags/python/</loc>
-    <lastmod>2018-06-16T23:51:11+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://muattiyah.com/tags/</loc>
-    <lastmod>2018-05-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>http://muattiyah.com/posts/mathematical-induction/</loc>
+    <lastmod>2017-06-12T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Math on Muhammad Attiyah - Home</title>
+    <title>math on Muhammad Attiyah - Home</title>
     <link>http://muattiyah.com/tags/math/</link>
-    <description>Recent content in Math on Muhammad Attiyah - Home</description>
+    <description>Recent content in math on Muhammad Attiyah - Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 12 Jun 2017 00:00:00 +0000</lastBuildDate>
@@ -17,9 +17,7 @@
       <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>http://muattiyah.com/posts/mathematical-induction/</guid>
-      <description>Suppose you want to sum up the first 10 natural numbers 1, 2, 3, ...
-The most obvious way to do it would be to add the numbers consecutively like so: 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55
-No big deal, but now you want to sum the first 1000 natural numbers i.e. 1, 2, 3, .</description>
+      <description></description>
     </item>
     
   </channel>

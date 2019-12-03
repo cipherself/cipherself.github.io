@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Haskell on Muhammad Attiyah - Home</title>
+    <title>haskell on Muhammad Attiyah - Home</title>
     <link>http://muattiyah.com/tags/haskell/</link>
-    <description>Recent content in Haskell on Muhammad Attiyah - Home</description>
+    <description>Recent content in haskell on Muhammad Attiyah - Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
@@ -20,7 +20,7 @@
       <description>Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.
 Single Constructor Without Arguments The most simple data type we can construct in Haskell is a type with a single constructor,
 data Frame = MkFrame x = MkFrame Examining the type in ghci
-:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame  In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description>
+:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description>
     </item>
     
   </channel>
