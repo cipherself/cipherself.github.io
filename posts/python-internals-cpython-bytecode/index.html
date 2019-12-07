@@ -201,8 +201,16 @@ this by inspecting our <code>code</code> object</p>
 push 'Hello,'
 push (ref name)
 </code></pre><p>Translating this into a visual representation, this is what our stack looks like:</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<pre>
+   |        |
+   +--------+
+   |ref name|
+   +--------+
+   |'Hello,'|
+   +--------+
+   | print  |
+   +--------+
+</pre>
 <p>Alright, let's continue looking at the disassembly, the next line is</p>
 <pre><code>              6 CALL_FUNCTION            2
 </code></pre><p>The <code>CALL_FUNCTION</code> as obvious from its name will call a function, but what does the argument that it takes, <code>2</code> in our case, mean?
