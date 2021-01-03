@@ -6,11 +6,7 @@
     <description>Recent content in haskell on Muhammad Attiyah - Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://muattiyah.com/tags/haskell/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://muattiyah.com/tags/haskell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ADTs (Algebraic Data Types) in Haskell</title>
       <link>http://muattiyah.com/posts/haskell-adts/</link>

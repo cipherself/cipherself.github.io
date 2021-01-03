@@ -113,7 +113,7 @@ day :: Day
     <span style="color:#902000">Thursday</span>  <span style="color:#007020;font-weight:bold">-&gt;</span> <span style="color:#40a070">6</span>
     <span style="color:#902000">Friday</span>    <span style="color:#007020;font-weight:bold">-&gt;</span> <span style="color:#40a070">7</span>
 </code></pre></div><h2 id="constructors-with-arguments">Constructors with arguments</h2>
-<p>We can also declare types whose constructor takes one or more arguments, these are commonly referred to as <strong>Product Types</strong>. Let's say we want to represent a point in the cartesian coordinate system i.e. a point with <code>x</code> and <code>y</code> coordinates,</p>
+<p>We can also declare types whose constructor takes one or more arguments, these are commonly referred to as <strong>Product Types</strong>. Let&rsquo;s say we want to represent a point in the cartesian coordinate system i.e. a point with <code>x</code> and <code>y</code> coordinates,</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#007020;font-weight:bold">data</span> <span style="color:#902000">Point</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">P</span> <span style="color:#902000">Int</span> <span style="color:#902000">Int</span>
 <span style="color:#06287e">mypoint</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">P</span> <span style="color:#40a070">1</span> <span style="color:#40a070">2</span>
 </code></pre></div><p>Examining in <code>ghci</code></p>
@@ -125,11 +125,11 @@ mypoint :: Point
 
 :&gt; :type P 1 2
 P 1 2 :: Point
-</code></pre><p>It's a convention in Haskell code to sometimes label the data constructor with the same label as the type constructor, to illustrate this with our <code>Point</code> example:</p>
+</code></pre><p>It&rsquo;s a convention in Haskell code to sometimes label the data constructor with the same label as the type constructor, to illustrate this with our <code>Point</code> example:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#007020;font-weight:bold">data</span> <span style="color:#902000">Point</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">Point</span> <span style="color:#902000">Int</span> <span style="color:#902000">Int</span>
 <span style="color:#06287e">mypoint</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">Point</span> <span style="color:#40a070">1</span> <span style="color:#40a070">2</span>
 </code></pre></div><h2 id="record-syntax">Record Syntax</h2>
-<p>Let's say we want to define a <code>User</code> type that has the <code>name</code> and <code>age</code> of a user, we can try to do something like this</p>
+<p>Let&rsquo;s say we want to define a <code>User</code> type that has the <code>name</code> and <code>age</code> of a user, we can try to do something like this</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#007020;font-weight:bold">data</span> <span style="color:#902000">User</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">User</span> <span style="color:#902000">String</span> <span style="color:#902000">Int</span>
 </code></pre></div><p>where <code>name</code> is of type <code>String</code> and <code>age</code> is of type <code>Int</code>. However, in our application, we will want to get the name and age from an instance of this data type, we can do this like so:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#06287e">getName</span> <span style="color:#007020;font-weight:bold">::</span> <span style="color:#902000">User</span> <span style="color:#007020;font-weight:bold">-&gt;</span> <span style="color:#902000">String</span>
@@ -137,7 +137,7 @@ P 1 2 :: Point
 
 <span style="color:#06287e">getAge</span> <span style="color:#007020;font-weight:bold">::</span> <span style="color:#902000">User</span> <span style="color:#007020;font-weight:bold">-&gt;</span> <span style="color:#902000">Int</span>
 <span style="color:#06287e">getAge</span> (<span style="color:#902000">User</span> <span style="color:#007020;font-weight:bold">_</span> age) <span style="color:#007020;font-weight:bold">=</span> age
-</code></pre></div><p>but, as you can imagine, this would get too daunting and verbose if our data constructor takes a large number of arguments, and we'll have to modify all these accessor functions
+</code></pre></div><p>but, as you can imagine, this would get too daunting and verbose if our data constructor takes a large number of arguments, and we&rsquo;ll have to modify all these accessor functions
 if we add or remove arguments from the data constructor. Also, we have to keep in mind the position of each argument. Enter records, records allow us to write:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#007020;font-weight:bold">data</span> <span style="color:#902000">User</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">User</span>
   { name  <span style="color:#007020;font-weight:bold">::</span> <span style="color:#902000">String</span>
@@ -146,12 +146,12 @@ if we add or remove arguments from the data constructor. Also, we have to keep i
 
 <span style="color:#60a0b0;font-style:italic">-- Create a User</span>
 <span style="color:#06287e">user1</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">User</span>
-  { name <span style="color:#007020;font-weight:bold">=</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">Oliver Heaviside</span><span style="color:#4070a0">&#34;</span>
+  { name <span style="color:#007020;font-weight:bold">=</span> <span style="color:#4070a0">&#34;Oliver Heaviside&#34;</span>
   , age <span style="color:#007020;font-weight:bold">=</span> <span style="color:#40a070">74</span>
   }
 
 <span style="color:#60a0b0;font-style:italic">-- This still works</span>
-<span style="color:#06287e">user2</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">User</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">James Clerk Maxwell</span><span style="color:#4070a0">&#34;</span> <span style="color:#40a070">48</span>
+<span style="color:#06287e">user2</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">User</span> <span style="color:#4070a0">&#34;James Clerk Maxwell&#34;</span> <span style="color:#40a070">48</span>
 </code></pre></div><p>and get accessor functions for free, these will be automatically generated:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#06287e">name</span> <span style="color:#007020;font-weight:bold">::</span> <span style="color:#902000">User</span> <span style="color:#007020;font-weight:bold">-&gt;</span> <span style="color:#902000">String</span>
 <span style="color:#06287e">age</span> <span style="color:#007020;font-weight:bold">::</span> <span style="color:#902000">User</span> <span style="color:#007020;font-weight:bold">-&gt;</span> <span style="color:#902000">Int</span>
@@ -159,7 +159,7 @@ if we add or remove arguments from the data constructor. Also, we have to keep i
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#06287e">changeAge</span> user newAge <span style="color:#007020;font-weight:bold">=</span> user { age <span style="color:#007020;font-weight:bold">=</span> newAge}
 
 <span style="color:#06287e">user1</span> <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">User</span>
-  { name <span style="color:#007020;font-weight:bold">=</span> <span style="color:#4070a0">&#34;</span><span style="color:#4070a0">Oliver Heaviside</span><span style="color:#4070a0">&#34;</span>
+  { name <span style="color:#007020;font-weight:bold">=</span> <span style="color:#4070a0">&#34;Oliver Heaviside&#34;</span>
   , age <span style="color:#007020;font-weight:bold">=</span> <span style="color:#40a070">74</span>
   }
 
@@ -185,7 +185,7 @@ lhead ['a'] :: Maybe Char
 :&gt; :type lhead [1]
 lhead [1] :: Num a =&gt; Maybe a
 </code></pre><h2 id="recursive-types">Recursive Types</h2>
-<p>Haskell allows us to define types in terms of themselves i.e. <strong>recursive types</strong>. Let's illustrate this by making a type for a <strong>Binary Tree</strong>:</p>
+<p>Haskell allows us to define types in terms of themselves i.e. <strong>recursive types</strong>. Let&rsquo;s illustrate this by making a type for a <strong>Binary Tree</strong>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#007020;font-weight:bold">data</span> <span style="color:#902000">BinTree</span> a <span style="color:#007020;font-weight:bold">=</span> <span style="color:#902000">EmptyTree</span>
                <span style="color:#666">|</span> <span style="color:#902000">Node</span> a (<span style="color:#902000">BinTree</span> a) (<span style="color:#902000">BinTree</span> a)
 
