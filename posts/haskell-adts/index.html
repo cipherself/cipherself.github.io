@@ -22,9 +22,11 @@
 <a href=/tags/haskell>haskell</a>
 <a href=/tags/programming>programming</a>
 </div>
+<p style=color:gray><em>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to <a href=https://www.reddit.com/r/haskell/comments/8ns3me/an_introduction_to_adts_algebraic_data_types_in/e01izuz/>e01izuz</a></em></p>
+<p><br></p>
 <p>Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. <code>Bool</code> and <code>Int</code>.</p>
 <h2 id=single-constructor-without-arguments>Single Constructor Without Arguments</h2>
-<p>The most simple data type we can construct in Haskell is a type with a single constructor,</p>
+<p>One of the simplest datatypes we can construct in Haskell is a type with a single constructor,</p>
 <div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-haskell data-lang=haskell><span style=color:#007020;font-weight:700>data</span> <span style=color:#902000>Frame</span> <span style=color:#007020;font-weight:700>=</span> <span style=color:#902000>MkFrame</span>
 <span style=color:#06287e>x</span> <span style=color:#007020;font-weight:700>=</span> <span style=color:#902000>MkFrame</span>
 </code></pre></div><p>Examining the type in <code>ghci</code></p>
