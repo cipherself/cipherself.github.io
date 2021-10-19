@@ -1,35 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>programming on Muhammad Attiyah - Home</title>
-    <link>http://muattiyah.com/tags/programming/</link>
-    <description>Recent content in programming on Muhammad Attiyah - Home</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate><atom:link href="http://muattiyah.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Python Internals – CPython Bytecode</title>
-      <link>http://muattiyah.com/posts/python-internals-cpython-bytecode/</link>
-      <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
-      
-      <guid>http://muattiyah.com/posts/python-internals-cpython-bytecode/</guid>
-      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>programming on Mohamed Attia's Macrocosm</title><link>http://muattiyah.com/tags/programming/</link><description>Recent content in programming on Mohamed Attia's Macrocosm</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate><atom:link href="http://muattiyah.com/tags/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Internals – CPython Bytecode</title><link>http://muattiyah.com/posts/python-internals-cpython-bytecode/</link><pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate><guid>http://muattiyah.com/posts/python-internals-cpython-bytecode/</guid><description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.
 I will be using CPython 3.6.5.
 A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.
-We passed arguments to the compile function as follows:</description>
-    </item>
-    
-    <item>
-      <title>ADTs (Algebraic Data Types) in Haskell</title>
-      <link>http://muattiyah.com/posts/haskell-adts/</link>
-      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://muattiyah.com/posts/haskell-adts/</guid>
-      <description>Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.
+We passed arguments to the compile function as follows:</description></item><item><title>ADTs (Algebraic Data Types) in Haskell</title><link>http://muattiyah.com/posts/haskell-adts/</link><pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate><guid>http://muattiyah.com/posts/haskell-adts/</guid><description>Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.
 Single Constructor Without Arguments The most simple data type we can construct in Haskell is a type with a single constructor,
 data Frame = MkFrame x = MkFrame Examining the type in ghci
-:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description>
-    </item>
-    
-  </channel>
-</rss>
+:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description></item></channel></rss>
