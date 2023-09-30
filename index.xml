@@ -1,10 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mohamed Attia's Macrocosm</title><link>http://muattiyah.com/</link><description>Recent content on Mohamed Attia's Macrocosm</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate><atom:link href="http://muattiyah.com/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Internals – CPython Bytecode</title><link>http://muattiyah.com/posts/python-internals-cpython-bytecode/</link><pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate><guid>http://muattiyah.com/posts/python-internals-cpython-bytecode/</guid><description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mohamed Attia&#39;s Macrocosm</title>
+    <link>http://muattiyah.com/</link>
+    <description>Recent content on Mohamed Attia&#39;s Macrocosm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate><atom:link href="http://muattiyah.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python Internals – CPython Bytecode</title>
+      <link>http://muattiyah.com/posts/python-internals-cpython-bytecode/</link>
+      <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
+      
+      <guid>http://muattiyah.com/posts/python-internals-cpython-bytecode/</guid>
+      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.
 I will be using CPython 3.6.5.
 A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.
-We passed arguments to the compile function as follows:</description></item><item><title>ADTs (Algebraic Data Types) in Haskell</title><link>http://muattiyah.com/posts/haskell-adts/</link><pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate><guid>http://muattiyah.com/posts/haskell-adts/</guid><description>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to e01izuz
+We passed arguments to the compile function as follows:</description>
+    </item>
+    
+    <item>
+      <title>ADTs (Algebraic Data Types) in Haskell</title>
+      <link>http://muattiyah.com/posts/haskell-adts/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://muattiyah.com/posts/haskell-adts/</guid>
+      <description>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to e01izuz
 Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.
 Single Constructor Without Arguments One of the simplest datatypes we can construct in Haskell is a type with a single constructor,
 data Frame = MkFrame x = MkFrame Examining the type in ghci
-:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description></item><item><title>Mathematical Induction</title><link>http://muattiyah.com/posts/mathematical-induction/</link><pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate><guid>http://muattiyah.com/posts/mathematical-induction/</guid><description>Suppose you want to sum up the first 10 natural numbers 1, 2, 3, ...
+:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description>
+    </item>
+    
+    <item>
+      <title>Mathematical Induction</title>
+      <link>http://muattiyah.com/posts/mathematical-induction/</link>
+      <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://muattiyah.com/posts/mathematical-induction/</guid>
+      <description>Suppose you want to sum up the first 10 natural numbers 1, 2, 3, ...
 The most obvious way to do it would be to add the numbers consecutively like so: 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55
-No big deal, but now you want to sum the first 1000 natural numbers i.e. 1, 2, 3, .</description></item></channel></rss>
+No big deal, but now you want to sum the first 1000 natural numbers i.e. 1, 2, 3, .</description>
+    </item>
+    
+  </channel>
+</rss>
