@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>haskell on Mohamed Attia&#39;s Macrocosm</title>
-    <link>http://muattiyah.com/tags/haskell/</link>
+    <link>https://mohamed.computer/tags/haskell/</link>
     <description>Recent content in haskell on Mohamed Attia&#39;s Macrocosm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://muattiyah.com/tags/haskell/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://mohamed.computer/tags/haskell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ADTs (Algebraic Data Types) in Haskell</title>
-      <link>http://muattiyah.com/posts/haskell-adts/</link>
+      <link>https://mohamed.computer/posts/haskell-adts/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://muattiyah.com/posts/haskell-adts/</guid>
+      <guid>https://mohamed.computer/posts/haskell-adts/</guid>
       <description>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to e01izuz
 Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.
 Single Constructor Without Arguments One of the simplest datatypes we can construct in Haskell is a type with a single constructor,
