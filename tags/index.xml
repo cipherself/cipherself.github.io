@@ -7,42 +7,49 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©️ Mohamed Attia</copyright>
-    <lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate><atom:link href="https://mohamed.computer/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mohamed.computer/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>programming</title>
+      <title>Elisp</title>
+      <link>https://mohamed.computer/tags/elisp/</link>
+      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://mohamed.computer/tags/elisp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Emacs</title>
+      <link>https://mohamed.computer/tags/emacs/</link>
+      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://mohamed.computer/tags/emacs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Programming</title>
       <link>https://mohamed.computer/tags/programming/</link>
-      <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
-      
+      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://mohamed.computer/tags/programming/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>python</title>
+      <title>Python</title>
       <link>https://mohamed.computer/tags/python/</link>
-      <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
-      
+      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://mohamed.computer/tags/python/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>haskell</title>
+      <title>Haskell</title>
       <link>https://mohamed.computer/tags/haskell/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://mohamed.computer/tags/haskell/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>math</title>
+      <title>Math</title>
       <link>https://mohamed.computer/tags/math/</link>
       <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://mohamed.computer/tags/math/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

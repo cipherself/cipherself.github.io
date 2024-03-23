@@ -7,42 +7,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©️ Mohamed Attia</copyright>
-    <lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate><atom:link href="https://mohamed.computer/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mohamed.computer/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Barebones python project with a virtual environment in Emacs Lisp</title>
+      <link>https://mohamed.computer/posts/elisp-python-project-init/</link>
+      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://mohamed.computer/posts/elisp-python-project-init/</guid>
+      <description>A lot of the time I find myself wanting to have a directory with a basic Python virtual environment initialized in it, so I wrote the following Emacs Lisp script to do that, you can use it as an interactive function in emacs or as a script that you call from a shell.&#xA;Remember to change the path and the keybinding to your liking&#xA;#! emacs --script ;;; Code: (defun setup-python-project-in-directory (project-name) &amp;#34;Setup a Python project at PROJECT-NAME with a virtual environment.</description>
+    </item>
     <item>
       <title>Python Internals – CPython Bytecode</title>
       <link>https://mohamed.computer/posts/python-internals-cpython-bytecode/</link>
       <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
-      
       <guid>https://mohamed.computer/posts/python-internals-cpython-bytecode/</guid>
-      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.
-I will be using CPython 3.6.5.
-A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.
-We passed arguments to the compile function as follows:</description>
+      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.&#xA;I will be using CPython 3.6.5.&#xA;A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.&#xA;We passed arguments to the compile function as follows:</description>
     </item>
-    
     <item>
       <title>ADTs (Algebraic Data Types) in Haskell</title>
       <link>https://mohamed.computer/posts/haskell-adts/</link>
       <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://mohamed.computer/posts/haskell-adts/</guid>
-      <description>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to e01izuz
-Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.
-Single Constructor Without Arguments One of the simplest datatypes we can construct in Haskell is a type with a single constructor,
-data Frame = MkFrame x = MkFrame Examining the type in ghci
-:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description>
+      <description>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to e01izuz&#xA;Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.&#xA;Single Constructor Without Arguments One of the simplest datatypes we can construct in Haskell is a type with a single constructor,&#xA;data Frame = MkFrame x = MkFrame Examining the type in ghci&#xA;:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description>
     </item>
-    
     <item>
       <title>Mathematical Induction</title>
       <link>https://mohamed.computer/posts/mathematical-induction/</link>
       <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://mohamed.computer/posts/mathematical-induction/</guid>
-      <description>Suppose you want to sum up the first 10 natural numbers 1, 2, 3, ...
-The most obvious way to do it would be to add the numbers consecutively like so: 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55
-No big deal, but now you want to sum the first 1000 natural numbers i.e. 1, 2, 3, .</description>
+      <description>Suppose you want to sum up the first 10 natural numbers 1, 2, 3, ...&#xA;The most obvious way to do it would be to add the numbers consecutively like so: 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55&#xA;No big deal, but now you want to sum the first 1000 natural numbers i.e. 1, 2, 3, .</description>
     </item>
-    
   </channel>
 </rss>

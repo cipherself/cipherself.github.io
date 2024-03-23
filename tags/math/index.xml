@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>math on Mohamed Attia&#39;s Macrocosm</title>
+    <title>Math on Mohamed Attia&#39;s Macrocosm</title>
     <link>https://mohamed.computer/tags/math/</link>
-    <description>Recent content in math on Mohamed Attia&#39;s Macrocosm</description>
+    <description>Recent content in Math on Mohamed Attia&#39;s Macrocosm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©️ Mohamed Attia</copyright>
-    <lastBuildDate>Mon, 12 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://mohamed.computer/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mohamed.computer/tags/math/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mathematical Induction</title>
       <link>https://mohamed.computer/posts/mathematical-induction/</link>
       <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://mohamed.computer/posts/mathematical-induction/</guid>
-      <description>Suppose you want to sum up the first 10 natural numbers 1, 2, 3, ...
-The most obvious way to do it would be to add the numbers consecutively like so: 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55
-No big deal, but now you want to sum the first 1000 natural numbers i.e. 1, 2, 3, .</description>
+      <description>Suppose you want to sum up the first 10 natural numbers 1, 2, 3, ...&#xA;The most obvious way to do it would be to add the numbers consecutively like so: 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55&#xA;No big deal, but now you want to sum the first 1000 natural numbers i.e. 1, 2, 3, .</description>
     </item>
-    
   </channel>
 </rss>

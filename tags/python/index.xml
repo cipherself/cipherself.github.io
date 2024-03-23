@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>python on Mohamed Attia&#39;s Macrocosm</title>
+    <title>Python on Mohamed Attia&#39;s Macrocosm</title>
     <link>https://mohamed.computer/tags/python/</link>
-    <description>Recent content in python on Mohamed Attia&#39;s Macrocosm</description>
+    <description>Recent content in Python on Mohamed Attia&#39;s Macrocosm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©️ Mohamed Attia</copyright>
-    <lastBuildDate>Sat, 16 Jun 2018 23:51:11 +0200</lastBuildDate><atom:link href="https://mohamed.computer/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mohamed.computer/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Barebones python project with a virtual environment in Emacs Lisp</title>
+      <link>https://mohamed.computer/posts/elisp-python-project-init/</link>
+      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://mohamed.computer/posts/elisp-python-project-init/</guid>
+      <description>A lot of the time I find myself wanting to have a directory with a basic Python virtual environment initialized in it, so I wrote the following Emacs Lisp script to do that, you can use it as an interactive function in emacs or as a script that you call from a shell.&#xA;Remember to change the path and the keybinding to your liking&#xA;#! emacs --script ;;; Code: (defun setup-python-project-in-directory (project-name) &amp;#34;Setup a Python project at PROJECT-NAME with a virtual environment.</description>
+    </item>
     <item>
       <title>Python Internals – CPython Bytecode</title>
       <link>https://mohamed.computer/posts/python-internals-cpython-bytecode/</link>
       <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
-      
       <guid>https://mohamed.computer/posts/python-internals-cpython-bytecode/</guid>
-      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.
-I will be using CPython 3.6.5.
-A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.
-We passed arguments to the compile function as follows:</description>
+      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.&#xA;I will be using CPython 3.6.5.&#xA;A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.&#xA;We passed arguments to the compile function as follows:</description>
     </item>
-    
   </channel>
 </rss>
