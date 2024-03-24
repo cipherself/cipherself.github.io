@@ -7,8 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©️ Mohamed Attia</copyright>
-    <lastBuildDate>Sat, 23 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://mohamed.computer/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quick journaling in org-mode in Emacs</title>
+      <link>https://mohamed.computer/posts/org-journal/</link>
+      <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://mohamed.computer/posts/org-journal/</guid>
+      <description>A while back I started maintaining a journal, it can contain things that I&amp;rsquo;ve learned like new programming techniques, new commands, new insights, &amp;hellip;etc. The key for me to make this viable is to be low-friction, so I&amp;rsquo;ve written an Emacs Lisp script that opens a journal in my journal directory with today&amp;rsquo;s date as the filename, so whenever I want to write something, I just hit Ctrl-x-j in emacs, write what i want and move on.</description>
+    </item>
     <item>
       <title>Barebones python project with a virtual environment in Emacs Lisp</title>
       <link>https://mohamed.computer/posts/elisp-python-project-init/</link>

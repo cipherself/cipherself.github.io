@@ -2,28 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mohamed.computer/tags/elisp/</loc>
+    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mohamed.computer/tags/emacs/</loc>
+    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mohamed.computer/</loc>
+    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mohamed.computer/tags/org-mode/</loc>
+    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mohamed.computer/posts/</loc>
+    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mohamed.computer/tags/programming/</loc>
+    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mohamed.computer/posts/org-journal/</loc>
+    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://mohamed.computer/tags/</loc>
+    <lastmod>2024-03-24T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://mohamed.computer/posts/elisp-python-project-init/</loc>
     <lastmod>2024-03-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://mohamed.computer/tags/elisp/</loc>
-    <lastmod>2024-03-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mohamed.computer/tags/emacs/</loc>
-    <lastmod>2024-03-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mohamed.computer/</loc>
-    <lastmod>2024-03-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mohamed.computer/posts/</loc>
-    <lastmod>2024-03-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mohamed.computer/tags/programming/</loc>
-    <lastmod>2024-03-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://mohamed.computer/tags/python/</loc>
-    <lastmod>2024-03-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://mohamed.computer/tags/</loc>
     <lastmod>2024-03-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://mohamed.computer/posts/python-internals-cpython-bytecode/</loc>
