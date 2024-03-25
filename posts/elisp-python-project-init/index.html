@@ -88,7 +88,7 @@ so I wrote the following Emacs Lisp script to do that, you can use it as an inte
 </span></span><span style="display:flex;"><span>    (<span style="color:#007020">unless</span> <span style="color:#bb60d5">exists</span> (<span style="color:#bb60d5">make-directory</span> <span style="color:#bb60d5">project-dir</span> <span style="color:#60add5">t</span>))
 </span></span><span style="display:flex;"><span>    (<span style="color:#06287e">message</span> <span style="color:#4070a0">&#34;Setting up virtual environment...&#34;</span>)
 </span></span><span style="display:flex;"><span>    (<span style="color:#bb60d5">shell-command</span> <span style="color:#bb60d5">venv-cmd</span>)
-</span></span><span style="display:flex;"><span>    (<span style="color:#06287e">message</span> (<span style="color:#06287e">format</span> <span style="color:#4070a0">&#34;To activate your virtual environment, run: \n\n source %s/venv/bin/activate&#34;</span> <span style="color:#bb60d5">project-dir</span>))))
+</span></span><span style="display:flex;"><span>    (<span style="color:#06287e">message</span> (<span style="color:#06287e">format</span> <span style="color:#4070a0">&#34;To activate your virtual environment, run: \n\n source %s/.venv/bin/activate&#34;</span> <span style="color:#bb60d5">project-dir</span>))))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>(<span style="color:#007020">when</span> <span style="color:#bb60d5">noninteractive</span>
