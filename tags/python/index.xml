@@ -1,27 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Python on Mohamed Attia&#39;s Macrocosm</title>
-    <link>https://mohamed.computer/tags/python/</link>
-    <description>Recent content in Python on Mohamed Attia&#39;s Macrocosm</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>©️ Mohamed Attia</copyright>
-    <lastBuildDate>Sat, 23 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://mohamed.computer/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Barebones python project with a virtual environment in Emacs Lisp</title>
-      <link>https://mohamed.computer/posts/elisp-python-project-init/</link>
-      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://mohamed.computer/posts/elisp-python-project-init/</guid>
-      <description>A lot of the time I find myself wanting to have a directory with a basic Python virtual environment initialized in it, so I wrote the following Emacs Lisp script to do that, you can use it as an interactive function in emacs or as a script that you call from a shell.&#xA;Remember to change the path and the keybinding to your liking&#xA;#! emacs --script ;;; Code: (defun setup-python-project-in-directory (project-name) &amp;#34;Setup a Python project at PROJECT-NAME with a virtual environment.</description>
-    </item>
-    <item>
-      <title>Python Internals – CPython Bytecode</title>
-      <link>https://mohamed.computer/posts/python-internals-cpython-bytecode/</link>
-      <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
-      <guid>https://mohamed.computer/posts/python-internals-cpython-bytecode/</guid>
-      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.&#xA;I will be using CPython 3.6.5.&#xA;A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.&#xA;We passed arguments to the compile function as follows:</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Mohamed Attia's Macrocosm</title><link>https://mohamed.computer/tags/python/</link><description>Recent content in Python on Mohamed Attia's Macrocosm</description><generator>Hugo</generator><language>en-us</language><copyright>©️ Mohamed Attia</copyright><lastBuildDate>Sat, 23 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mohamed.computer/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Barebones python project with a virtual environment in Emacs Lisp</title><link>https://mohamed.computer/posts/elisp-python-project-init/</link><pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate><guid>https://mohamed.computer/posts/elisp-python-project-init/</guid><description>&lt;p>A lot of the time I find myself wanting to have a directory with a basic Python virtual environment initialized in it,
+so I wrote the following Emacs Lisp script to do that, you can use it as an interactive function in emacs or as a script that you call from a shell.&lt;/p>
+&lt;p>&lt;strong>Remember to change the path and the keybinding to your liking&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-elisp" data-lang="elisp">&lt;span style="display:flex;">&lt;span>&lt;span style="">#&lt;/span>&lt;span style="color:#bb60d5">!&lt;/span> &lt;span style="color:#bb60d5">emacs&lt;/span> &lt;span style="color:#bb60d5">--script&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#60a0b0;font-style:italic">;;; Code:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#007020">defun&lt;/span> &lt;span style="color:#bb60d5">setup-python-project-in-directory&lt;/span> (&lt;span style="color:#bb60d5">project-name&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4070a0">&amp;#34;Setup a Python project at PROJECT-NAME with a virtual environment.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">interactive&lt;/span> (&lt;span style="color:#06287e">list&lt;/span> (&lt;span style="color:#06287e">read-string&lt;/span> &lt;span style="color:#4070a0">&amp;#34;Enter the project name: &amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4070a0">&amp;#34;frobenius&amp;#34;&lt;/span>)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">let*&lt;/span> ((&lt;span style="color:#bb60d5">project-dir&lt;/span> (&lt;span style="color:#06287e">concat&lt;/span> (&lt;span style="color:#06287e">expand-file-name&lt;/span> &lt;span style="color:#4070a0">&amp;#34;~&amp;#34;&lt;/span>) &lt;span style="color:#4070a0">&amp;#34;/personal/python-playground/&amp;#34;&lt;/span> &lt;span style="color:#bb60d5">project-name&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">venv-cmd&lt;/span> (&lt;span style="color:#06287e">format&lt;/span> &lt;span style="color:#4070a0">&amp;#34;python3 -m venv %s/.venv --prompt %s&amp;#34;&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">exists&lt;/span> (&lt;span style="color:#06287e">file-exists-p&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span>)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">when&lt;/span> &lt;span style="color:#bb60d5">exists&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">if&lt;/span> (&lt;span style="color:#bb60d5">y-or-n-p&lt;/span> (&lt;span style="color:#06287e">format&lt;/span> &lt;span style="color:#4070a0">&amp;#34;Directory %s exists. Delete and recreate? &amp;#34;&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">delete-directory&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span> &lt;span style="color:#60add5">t&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">user-error&lt;/span> &lt;span style="color:#4070a0">&amp;#34;Process cancelled by the user&amp;#34;&lt;/span>)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">unless&lt;/span> &lt;span style="color:#bb60d5">exists&lt;/span> (&lt;span style="color:#bb60d5">make-directory&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span> &lt;span style="color:#60add5">t&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#06287e">message&lt;/span> &lt;span style="color:#4070a0">&amp;#34;Setting up virtual environment...&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">shell-command&lt;/span> &lt;span style="color:#bb60d5">venv-cmd&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#06287e">message&lt;/span> (&lt;span style="color:#06287e">format&lt;/span> &lt;span style="color:#4070a0">&amp;#34;To activate your virtual environment, run: \n\n source %s/.venv/bin/activate&amp;#34;&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span>))))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#007020">when&lt;/span> &lt;span style="color:#bb60d5">noninteractive&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">let&lt;/span> ((&lt;span style="color:#bb60d5">project-name&lt;/span> (&lt;span style="color:#06287e">car&lt;/span> &lt;span style="color:#bb60d5">command-line-args-left&lt;/span>)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">if&lt;/span> (&lt;span style="color:#007020">or&lt;/span> (&lt;span style="color:#06287e">null&lt;/span> &lt;span style="color:#bb60d5">project-name&lt;/span>) (&lt;span style="color:#bb60d5">string=&lt;/span> &lt;span style="color:#bb60d5">project-name&lt;/span> &lt;span style="color:#4070a0">&amp;#34;&amp;#34;&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">error&lt;/span> &lt;span style="color:#4070a0">&amp;#34;No project name provided. Usage: script %s &amp;lt;project-name&amp;gt;&amp;#34;&lt;/span> &lt;span style="color:#bb60d5">load-file-name&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">setup-python-project-in-directory&lt;/span> &lt;span style="color:#bb60d5">project-name&lt;/span>))))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#bb60d5">global-set-key&lt;/span> (&lt;span style="color:#bb60d5">kbd&lt;/span> &lt;span style="color:#4070a0">&amp;#34;C-x p y&amp;#34;&lt;/span>) &lt;span style="color:#517918">&amp;#39;setup-python-project-in-directory&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#007020">provide&lt;/span> &lt;span style="color:#517918">&amp;#39;setup-python-project-in-directory&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>I haven&amp;rsquo;t bothered to make a proper shebang but check &lt;a href="https://gist.github.com/Kreyren/a12e3618525477c3dd5fb16c3de45bf3#making-emacs-lisp-scripts-executable">this&lt;/a> out if you&amp;rsquo;re interested in doing that.&lt;/p></description></item><item><title>Python Internals – CPython Bytecode</title><link>https://mohamed.computer/posts/python-internals-cpython-bytecode/</link><pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate><guid>https://mohamed.computer/posts/python-internals-cpython-bytecode/</guid><description>&lt;p>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.&lt;/p>
+&lt;p>I will be using CPython 3.6.5.&lt;/p>
+&lt;h2 id="a-simple-example">A simple example&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#666">&amp;gt;&amp;gt;&amp;gt;&lt;/span> codestr &lt;span style="color:#666">=&lt;/span> &lt;span style="color:#4070a0">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4070a0">print(&amp;#39;Witness me!&amp;#39;)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4070a0">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#666">&amp;gt;&amp;gt;&amp;gt;&lt;/span> compiled_codestr &lt;span style="color:#666">=&lt;/span> &lt;span style="color:#007020">compile&lt;/span>(codestr, &lt;span style="color:#4070a0">&amp;#39;&amp;lt;string&amp;gt;&amp;#39;&lt;/span>, &lt;span style="color:#4070a0">&amp;#39;exec&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#666">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#007020">type&lt;/span>(compiled_codestr)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#666">&amp;lt;&lt;/span>&lt;span style="color:#007020;font-weight:bold">class&lt;/span> &lt;span style="">&amp;#39;&lt;/span>&lt;span style="color:#0e84b5;font-weight:bold">code&lt;/span>&lt;span style="color:#4070a0">&amp;#39;&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Whoo, we have created our first &lt;a href="https://docs.python.org/3.6/c-api/code.html">code object&lt;/a>.&lt;/p>
+&lt;p>We passed arguments to the &lt;a href="https://docs.python.org/3/library/functions.html#compile">compile function&lt;/a> as follows:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>codestr&lt;/code> is, as you might have guessed, our code as a string.&lt;/p></description></item></channel></rss>

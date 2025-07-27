@@ -1,125 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Barebones python project with a virtual environment in Emacs Lisp</title>
-
-		<link rel="stylesheet" href="/css/normalize.css">
-<link rel="stylesheet" href="/css/style.css">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Vidaloka">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500">
-
-		
-
-
-    
-    
-
-	</head>
-
-
-<body>
-	<header>
-	<a href="/">
-		<svg id="logo" viewBox="0 0 404.45 497.19">
-			<g transform="translate(-176.4 -169.51)">
-				<g transform="translate(-94.286 80)">
-					<path d="m492.29 89.506v184.29h182.86v-184.29h-182.86zm46.176 47.604h90.506v89.076h-90.506v-89.076z"/>
-					<path d="m629.43 272.28v46.245h45.713v-46.245h-45.713z"/>
-					<path d="m493.57 316.93h181.43v45.714h-181.43z"/>
-					<path d="m493.57 361.93v138.57h45.714v-138.57h-45.714z"/>
-					<path d="m630 360.22h44.286v226.47h-44.286z"/>
-					<path d="m271.14 542.36h363.43v44.286h-363.43z"/>
-					<path d="m271.07 497.01h44.286v45.714h-44.286z"/>
-					<path d="m270.69 90.934v184.29h181.59v-184.29h-45.894v47.604h0.0369v89.076h-89.881v-89.076h0.11055v-47.604h-45.967z"/>
-					<path d="m270.94 316.01v184.64h180.78v-184.64h-180.78zm45.65 47.696h89.476v89.249h-89.476v-89.249z"/>
-					<path d="m270.86 272.28v46.245h45.713v-46.245h-45.713z"/>
-				</g>
-			</g>
-		</svg>
-	</a>
-</header>
-
-
-	
-
-	
-	<h1 class="post-title">Barebones python project with a virtual environment in Emacs Lisp</h1>
-	
-
-	<div class="info">March 23, 2024</div>
-
-	<div class="tags info">
-		
-			<a href="/tags/emacs">emacs</a>
-		
-			<a href="/tags/elisp">elisp</a>
-		
-			<a href="/tags/python">python</a>
-		
-			<a href="/tags/programming">programming</a>
-		
-	</div>
-
-	<p>A lot of the time I find myself wanting to have a directory with a basic Python virtual environment initialized in it,
-so I wrote the following Emacs Lisp script to do that, you can use it as an interactive function in emacs or as a script that you call from a shell.</p>
-<p><strong>Remember to change the path and the keybinding to your liking</strong></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="">#</span><span style="color:#bb60d5">!</span> <span style="color:#bb60d5">emacs</span> <span style="color:#bb60d5">--script</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">;;; Code:</span>
-</span></span><span style="display:flex;"><span>(<span style="color:#007020">defun</span> <span style="color:#bb60d5">setup-python-project-in-directory</span> (<span style="color:#bb60d5">project-name</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#4070a0">&#34;Setup a Python project at PROJECT-NAME with a virtual environment.&#34;</span>
-</span></span><span style="display:flex;"><span>  (<span style="color:#007020">interactive</span> (<span style="color:#06287e">list</span> (<span style="color:#06287e">read-string</span> <span style="color:#4070a0">&#34;Enter the project name: &#34;</span>
-</span></span><span style="display:flex;"><span>                                          <span style="color:#4070a0">&#34;frobenius&#34;</span>)))
-</span></span><span style="display:flex;"><span>  (<span style="color:#007020">let*</span> ((<span style="color:#bb60d5">project-dir</span> (<span style="color:#06287e">concat</span> (<span style="color:#06287e">expand-file-name</span> <span style="color:#4070a0">&#34;~&#34;</span>) <span style="color:#4070a0">&#34;/personal/python-playground/&#34;</span> <span style="color:#bb60d5">project-name</span>))
-</span></span><span style="display:flex;"><span>         (<span style="color:#bb60d5">venv-cmd</span> (<span style="color:#06287e">format</span> <span style="color:#4070a0">&#34;python3 -m venv %s/.venv --prompt %s&#34;</span> <span style="color:#bb60d5">project-dir</span> <span style="color:#bb60d5">project-dir</span>))
-</span></span><span style="display:flex;"><span>         (<span style="color:#bb60d5">exists</span> (<span style="color:#06287e">file-exists-p</span> <span style="color:#bb60d5">project-dir</span>)))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    (<span style="color:#007020">when</span> <span style="color:#bb60d5">exists</span>
-</span></span><span style="display:flex;"><span>      (<span style="color:#007020">if</span> (<span style="color:#bb60d5">y-or-n-p</span> (<span style="color:#06287e">format</span> <span style="color:#4070a0">&#34;Directory %s exists.  Delete and recreate? &#34;</span> <span style="color:#bb60d5">project-dir</span>))
-</span></span><span style="display:flex;"><span>          (<span style="color:#bb60d5">delete-directory</span> <span style="color:#bb60d5">project-dir</span> <span style="color:#60add5">t</span>)
-</span></span><span style="display:flex;"><span>        (<span style="color:#007020">user-error</span> <span style="color:#4070a0">&#34;Process cancelled by the user&#34;</span>)))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    (<span style="color:#007020">unless</span> <span style="color:#bb60d5">exists</span> (<span style="color:#bb60d5">make-directory</span> <span style="color:#bb60d5">project-dir</span> <span style="color:#60add5">t</span>))
-</span></span><span style="display:flex;"><span>    (<span style="color:#06287e">message</span> <span style="color:#4070a0">&#34;Setting up virtual environment...&#34;</span>)
-</span></span><span style="display:flex;"><span>    (<span style="color:#bb60d5">shell-command</span> <span style="color:#bb60d5">venv-cmd</span>)
-</span></span><span style="display:flex;"><span>    (<span style="color:#06287e">message</span> (<span style="color:#06287e">format</span> <span style="color:#4070a0">&#34;To activate your virtual environment, run: \n\n source %s/.venv/bin/activate&#34;</span> <span style="color:#bb60d5">project-dir</span>))))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>(<span style="color:#007020">when</span> <span style="color:#bb60d5">noninteractive</span>
-</span></span><span style="display:flex;"><span>  (<span style="color:#007020">let</span> ((<span style="color:#bb60d5">project-name</span> (<span style="color:#06287e">car</span> <span style="color:#bb60d5">command-line-args-left</span>)))
-</span></span><span style="display:flex;"><span>    (<span style="color:#007020">if</span> (<span style="color:#007020">or</span> (<span style="color:#06287e">null</span> <span style="color:#bb60d5">project-name</span>) (<span style="color:#bb60d5">string=</span> <span style="color:#bb60d5">project-name</span> <span style="color:#4070a0">&#34;&#34;</span>))
-</span></span><span style="display:flex;"><span>        (<span style="color:#007020">error</span> <span style="color:#4070a0">&#34;No project name provided. Usage: script %s &lt;project-name&gt;&#34;</span> <span style="color:#bb60d5">load-file-name</span>)
-</span></span><span style="display:flex;"><span>      (<span style="color:#bb60d5">setup-python-project-in-directory</span> <span style="color:#bb60d5">project-name</span>))))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>(<span style="color:#bb60d5">global-set-key</span> (<span style="color:#bb60d5">kbd</span> <span style="color:#4070a0">&#34;C-x p y&#34;</span>) <span style="color:#517918">&#39;setup-python-project-in-directory</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>(<span style="color:#007020">provide</span> <span style="color:#517918">&#39;setup-python-project-in-directory</span>)
-</span></span></code></pre></div><p>I haven&rsquo;t bothered to make a proper shebang but check <a href="https://gist.github.com/Kreyren/a12e3618525477c3dd5fb16c3de45bf3#making-emacs-lisp-scripts-executable">this</a> out if you&rsquo;re interested in doing that.</p>
-
-  
-
-  <script
-    src="https://utteranc.es/client.js"
-    repo="cipherself/cipherself.github.io"
-    issue-term="title"
-    label="comments"
-    theme="github-light"
-    crossorigin="anonymous"
-    async
-  ></script>
-	<hr>
-<footer>
-	<a href="/index.xml">RSS Feed</a>
-  <br />
-  <br />
-  <i>©️ Mohamed Attia</i>
-</footer>
-
-</body>
-</html>
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Barebones python project with a virtual environment in Emacs Lisp</title><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Vidaloka"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Crimson+Text"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:500"></head><body><header><a href=/><svg id="logo" viewBox="0 0 404.45 497.19"><g transform="translate(-176.4 -169.51)"><g transform="translate(-94.286 80)"><path d="m492.29 89.506v184.29h182.86V89.506H492.29zm46.176 47.604h90.506v89.076h-90.506V137.11z"/><path d="m629.43 272.28v46.245h45.713V272.28H629.43z"/><path d="m493.57 316.93H675v45.714H493.57z"/><path d="m493.57 361.93V500.5h45.714V361.93H493.57z"/><path d="m630 360.22h44.286v226.47H630z"/><path d="m271.14 542.36h363.43v44.286H271.14z"/><path d="m271.07 497.01h44.286v45.714H271.07z"/><path d="m270.69 90.934v184.29h181.59V90.934h-45.894v47.604h.0369v89.076h-89.881v-89.076h.11055V90.934h-45.967z"/><path d="m270.94 316.01v184.64h180.78V316.01H270.94zm45.65 47.696h89.476v89.249H316.59v-89.249z"/><path d="m270.86 272.28v46.245h45.713V272.28H270.86z"/></g></g></svg></a></header><h1 class=post-title>Barebones python project with a virtual environment in Emacs Lisp</h1><div class=info>March 23, 2024</div><div class="tags info"><a href=/tags/emacs>emacs</a>
+<a href=/tags/elisp>elisp</a>
+<a href=/tags/python>python</a>
+<a href=/tags/programming>programming</a></div><p>A lot of the time I find myself wanting to have a directory with a basic Python virtual environment initialized in it,
+so I wrote the following Emacs Lisp script to do that, you can use it as an interactive function in emacs or as a script that you call from a shell.</p><p><strong>Remember to change the path and the keybinding to your liking</strong></p><div class=highlight><pre tabindex=0 style=background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-elisp data-lang=elisp><span style=display:flex><span><span>#</span><span style=color:#bb60d5>!</span> <span style=color:#bb60d5>emacs</span> <span style=color:#bb60d5>--script</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#60a0b0;font-style:italic>;;; Code:</span>
+</span></span><span style=display:flex><span>(<span style=color:#007020>defun</span> <span style=color:#bb60d5>setup-python-project-in-directory</span> (<span style=color:#bb60d5>project-name</span>)
+</span></span><span style=display:flex><span>  <span style=color:#4070a0>&#34;Setup a Python project at PROJECT-NAME with a virtual environment.&#34;</span>
+</span></span><span style=display:flex><span>  (<span style=color:#007020>interactive</span> (<span style=color:#06287e>list</span> (<span style=color:#06287e>read-string</span> <span style=color:#4070a0>&#34;Enter the project name: &#34;</span>
+</span></span><span style=display:flex><span>                                          <span style=color:#4070a0>&#34;frobenius&#34;</span>)))
+</span></span><span style=display:flex><span>  (<span style=color:#007020>let*</span> ((<span style=color:#bb60d5>project-dir</span> (<span style=color:#06287e>concat</span> (<span style=color:#06287e>expand-file-name</span> <span style=color:#4070a0>&#34;~&#34;</span>) <span style=color:#4070a0>&#34;/personal/python-playground/&#34;</span> <span style=color:#bb60d5>project-name</span>))
+</span></span><span style=display:flex><span>         (<span style=color:#bb60d5>venv-cmd</span> (<span style=color:#06287e>format</span> <span style=color:#4070a0>&#34;python3 -m venv %s/.venv --prompt %s&#34;</span> <span style=color:#bb60d5>project-dir</span> <span style=color:#bb60d5>project-dir</span>))
+</span></span><span style=display:flex><span>         (<span style=color:#bb60d5>exists</span> (<span style=color:#06287e>file-exists-p</span> <span style=color:#bb60d5>project-dir</span>)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    (<span style=color:#007020>when</span> <span style=color:#bb60d5>exists</span>
+</span></span><span style=display:flex><span>      (<span style=color:#007020>if</span> (<span style=color:#bb60d5>y-or-n-p</span> (<span style=color:#06287e>format</span> <span style=color:#4070a0>&#34;Directory %s exists.  Delete and recreate? &#34;</span> <span style=color:#bb60d5>project-dir</span>))
+</span></span><span style=display:flex><span>          (<span style=color:#bb60d5>delete-directory</span> <span style=color:#bb60d5>project-dir</span> <span style=color:#60add5>t</span>)
+</span></span><span style=display:flex><span>        (<span style=color:#007020>user-error</span> <span style=color:#4070a0>&#34;Process cancelled by the user&#34;</span>)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    (<span style=color:#007020>unless</span> <span style=color:#bb60d5>exists</span> (<span style=color:#bb60d5>make-directory</span> <span style=color:#bb60d5>project-dir</span> <span style=color:#60add5>t</span>))
+</span></span><span style=display:flex><span>    (<span style=color:#06287e>message</span> <span style=color:#4070a0>&#34;Setting up virtual environment...&#34;</span>)
+</span></span><span style=display:flex><span>    (<span style=color:#bb60d5>shell-command</span> <span style=color:#bb60d5>venv-cmd</span>)
+</span></span><span style=display:flex><span>    (<span style=color:#06287e>message</span> (<span style=color:#06287e>format</span> <span style=color:#4070a0>&#34;To activate your virtual environment, run: \n\n source %s/.venv/bin/activate&#34;</span> <span style=color:#bb60d5>project-dir</span>))))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(<span style=color:#007020>when</span> <span style=color:#bb60d5>noninteractive</span>
+</span></span><span style=display:flex><span>  (<span style=color:#007020>let</span> ((<span style=color:#bb60d5>project-name</span> (<span style=color:#06287e>car</span> <span style=color:#bb60d5>command-line-args-left</span>)))
+</span></span><span style=display:flex><span>    (<span style=color:#007020>if</span> (<span style=color:#007020>or</span> (<span style=color:#06287e>null</span> <span style=color:#bb60d5>project-name</span>) (<span style=color:#bb60d5>string=</span> <span style=color:#bb60d5>project-name</span> <span style=color:#4070a0>&#34;&#34;</span>))
+</span></span><span style=display:flex><span>        (<span style=color:#007020>error</span> <span style=color:#4070a0>&#34;No project name provided. Usage: script %s &lt;project-name&gt;&#34;</span> <span style=color:#bb60d5>load-file-name</span>)
+</span></span><span style=display:flex><span>      (<span style=color:#bb60d5>setup-python-project-in-directory</span> <span style=color:#bb60d5>project-name</span>))))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(<span style=color:#bb60d5>global-set-key</span> (<span style=color:#bb60d5>kbd</span> <span style=color:#4070a0>&#34;C-x p y&#34;</span>) <span style=color:#517918>&#39;setup-python-project-in-directory</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(<span style=color:#007020>provide</span> <span style=color:#517918>&#39;setup-python-project-in-directory</span>)
+</span></span></code></pre></div><p>I haven&rsquo;t bothered to make a proper shebang but check <a href=https://gist.github.com/Kreyren/a12e3618525477c3dd5fb16c3de45bf3#making-emacs-lisp-scripts-executable>this</a> out if you&rsquo;re interested in doing that.</p><script src=https://utteranc.es/client.js repo=cipherself/cipherself.github.io issue-term=title label=comments theme=github-light crossorigin=anonymous async></script><hr><footer><a href=/index.xml>RSS Feed</a><br><br><i>©️ Mohamed Attia</i></footer></body></html>

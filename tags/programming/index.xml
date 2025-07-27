@@ -1,41 +1,70 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Programming on Mohamed Attia&#39;s Macrocosm</title>
-    <link>https://mohamed.computer/tags/programming/</link>
-    <description>Recent content in Programming on Mohamed Attia&#39;s Macrocosm</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>©️ Mohamed Attia</copyright>
-    <lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://mohamed.computer/tags/programming/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Quick journaling in org-mode in Emacs</title>
-      <link>https://mohamed.computer/posts/org-journal/</link>
-      <pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://mohamed.computer/posts/org-journal/</guid>
-      <description>A while back I started maintaining a journal, it can contain things that I&amp;rsquo;ve learned like new programming techniques, new commands, new insights, &amp;hellip;etc. The key for me to make this viable is to be low-friction, so I&amp;rsquo;ve written an Emacs Lisp script that opens a journal in my journal directory with today&amp;rsquo;s date as the filename, so whenever I want to write something, I just hit Ctrl-x-j in emacs, write what i want and move on.</description>
-    </item>
-    <item>
-      <title>Barebones python project with a virtual environment in Emacs Lisp</title>
-      <link>https://mohamed.computer/posts/elisp-python-project-init/</link>
-      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://mohamed.computer/posts/elisp-python-project-init/</guid>
-      <description>A lot of the time I find myself wanting to have a directory with a basic Python virtual environment initialized in it, so I wrote the following Emacs Lisp script to do that, you can use it as an interactive function in emacs or as a script that you call from a shell.&#xA;Remember to change the path and the keybinding to your liking&#xA;#! emacs --script ;;; Code: (defun setup-python-project-in-directory (project-name) &amp;#34;Setup a Python project at PROJECT-NAME with a virtual environment.</description>
-    </item>
-    <item>
-      <title>Python Internals – CPython Bytecode</title>
-      <link>https://mohamed.computer/posts/python-internals-cpython-bytecode/</link>
-      <pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate>
-      <guid>https://mohamed.computer/posts/python-internals-cpython-bytecode/</guid>
-      <description>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.&#xA;I will be using CPython 3.6.5.&#xA;A simple example &amp;gt;&amp;gt;&amp;gt; codestr = &amp;#34;&amp;#34;&amp;#34; print(&amp;#39;Witness me!&amp;#39;) &amp;#34;&amp;#34;&amp;#34; &amp;gt;&amp;gt;&amp;gt; compiled_codestr = compile(codestr, &amp;#39;&amp;lt;string&amp;gt;&amp;#39;, &amp;#39;exec&amp;#39;) &amp;gt;&amp;gt;&amp;gt; type(compiled_codestr) &amp;lt;class &amp;#39;code&amp;#39;&amp;gt; Whoo, we have created our first code object.&#xA;We passed arguments to the compile function as follows:</description>
-    </item>
-    <item>
-      <title>ADTs (Algebraic Data Types) in Haskell</title>
-      <link>https://mohamed.computer/posts/haskell-adts/</link>
-      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      <guid>https://mohamed.computer/posts/haskell-adts/</guid>
-      <description>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to e01izuz&#xA;Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.&#xA;Single Constructor Without Arguments One of the simplest datatypes we can construct in Haskell is a type with a single constructor,&#xA;data Frame = MkFrame x = MkFrame Examining the type in ghci&#xA;:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Programming on Mohamed Attia's Macrocosm</title><link>https://mohamed.computer/tags/programming/</link><description>Recent content in Programming on Mohamed Attia's Macrocosm</description><generator>Hugo</generator><language>en-us</language><copyright>©️ Mohamed Attia</copyright><lastBuildDate>Sun, 24 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://mohamed.computer/tags/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>Quick journaling in org-mode in Emacs</title><link>https://mohamed.computer/posts/org-journal/</link><pubDate>Sun, 24 Mar 2024 00:00:00 +0000</pubDate><guid>https://mohamed.computer/posts/org-journal/</guid><description>&lt;p>A while back I started maintaining a journal, it can contain things that I&amp;rsquo;ve learned like new
+programming techniques, new commands, new insights, &amp;hellip;etc. The key for me to make this viable
+is to be low-friction, so I&amp;rsquo;ve written an Emacs Lisp script that opens a journal in my &lt;code>journal&lt;/code>
+directory with today&amp;rsquo;s date as the filename, so whenever I want to write something, I just
+hit &lt;code>Ctrl-x-j&lt;/code> in emacs, write what i want and move on. And later on, if I want to check
+something in my journal e.g. an obscure command, I can just grep my &lt;code>journal&lt;/code> directory.&lt;/p></description></item><item><title>Barebones python project with a virtual environment in Emacs Lisp</title><link>https://mohamed.computer/posts/elisp-python-project-init/</link><pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate><guid>https://mohamed.computer/posts/elisp-python-project-init/</guid><description>&lt;p>A lot of the time I find myself wanting to have a directory with a basic Python virtual environment initialized in it,
+so I wrote the following Emacs Lisp script to do that, you can use it as an interactive function in emacs or as a script that you call from a shell.&lt;/p>
+&lt;p>&lt;strong>Remember to change the path and the keybinding to your liking&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-elisp" data-lang="elisp">&lt;span style="display:flex;">&lt;span>&lt;span style="">#&lt;/span>&lt;span style="color:#bb60d5">!&lt;/span> &lt;span style="color:#bb60d5">emacs&lt;/span> &lt;span style="color:#bb60d5">--script&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#60a0b0;font-style:italic">;;; Code:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#007020">defun&lt;/span> &lt;span style="color:#bb60d5">setup-python-project-in-directory&lt;/span> (&lt;span style="color:#bb60d5">project-name&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4070a0">&amp;#34;Setup a Python project at PROJECT-NAME with a virtual environment.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">interactive&lt;/span> (&lt;span style="color:#06287e">list&lt;/span> (&lt;span style="color:#06287e">read-string&lt;/span> &lt;span style="color:#4070a0">&amp;#34;Enter the project name: &amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4070a0">&amp;#34;frobenius&amp;#34;&lt;/span>)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">let*&lt;/span> ((&lt;span style="color:#bb60d5">project-dir&lt;/span> (&lt;span style="color:#06287e">concat&lt;/span> (&lt;span style="color:#06287e">expand-file-name&lt;/span> &lt;span style="color:#4070a0">&amp;#34;~&amp;#34;&lt;/span>) &lt;span style="color:#4070a0">&amp;#34;/personal/python-playground/&amp;#34;&lt;/span> &lt;span style="color:#bb60d5">project-name&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">venv-cmd&lt;/span> (&lt;span style="color:#06287e">format&lt;/span> &lt;span style="color:#4070a0">&amp;#34;python3 -m venv %s/.venv --prompt %s&amp;#34;&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">exists&lt;/span> (&lt;span style="color:#06287e">file-exists-p&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span>)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">when&lt;/span> &lt;span style="color:#bb60d5">exists&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">if&lt;/span> (&lt;span style="color:#bb60d5">y-or-n-p&lt;/span> (&lt;span style="color:#06287e">format&lt;/span> &lt;span style="color:#4070a0">&amp;#34;Directory %s exists. Delete and recreate? &amp;#34;&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">delete-directory&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span> &lt;span style="color:#60add5">t&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">user-error&lt;/span> &lt;span style="color:#4070a0">&amp;#34;Process cancelled by the user&amp;#34;&lt;/span>)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">unless&lt;/span> &lt;span style="color:#bb60d5">exists&lt;/span> (&lt;span style="color:#bb60d5">make-directory&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span> &lt;span style="color:#60add5">t&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#06287e">message&lt;/span> &lt;span style="color:#4070a0">&amp;#34;Setting up virtual environment...&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">shell-command&lt;/span> &lt;span style="color:#bb60d5">venv-cmd&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#06287e">message&lt;/span> (&lt;span style="color:#06287e">format&lt;/span> &lt;span style="color:#4070a0">&amp;#34;To activate your virtual environment, run: \n\n source %s/.venv/bin/activate&amp;#34;&lt;/span> &lt;span style="color:#bb60d5">project-dir&lt;/span>))))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#007020">when&lt;/span> &lt;span style="color:#bb60d5">noninteractive&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">let&lt;/span> ((&lt;span style="color:#bb60d5">project-name&lt;/span> (&lt;span style="color:#06287e">car&lt;/span> &lt;span style="color:#bb60d5">command-line-args-left&lt;/span>)))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">if&lt;/span> (&lt;span style="color:#007020">or&lt;/span> (&lt;span style="color:#06287e">null&lt;/span> &lt;span style="color:#bb60d5">project-name&lt;/span>) (&lt;span style="color:#bb60d5">string=&lt;/span> &lt;span style="color:#bb60d5">project-name&lt;/span> &lt;span style="color:#4070a0">&amp;#34;&amp;#34;&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#007020">error&lt;/span> &lt;span style="color:#4070a0">&amp;#34;No project name provided. Usage: script %s &amp;lt;project-name&amp;gt;&amp;#34;&lt;/span> &lt;span style="color:#bb60d5">load-file-name&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#bb60d5">setup-python-project-in-directory&lt;/span> &lt;span style="color:#bb60d5">project-name&lt;/span>))))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#bb60d5">global-set-key&lt;/span> (&lt;span style="color:#bb60d5">kbd&lt;/span> &lt;span style="color:#4070a0">&amp;#34;C-x p y&amp;#34;&lt;/span>) &lt;span style="color:#517918">&amp;#39;setup-python-project-in-directory&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>(&lt;span style="color:#007020">provide&lt;/span> &lt;span style="color:#517918">&amp;#39;setup-python-project-in-directory&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>I haven&amp;rsquo;t bothered to make a proper shebang but check &lt;a href="https://gist.github.com/Kreyren/a12e3618525477c3dd5fb16c3de45bf3#making-emacs-lisp-scripts-executable">this&lt;/a> out if you&amp;rsquo;re interested in doing that.&lt;/p></description></item><item><title>Python Internals – CPython Bytecode</title><link>https://mohamed.computer/posts/python-internals-cpython-bytecode/</link><pubDate>Sat, 16 Jun 2018 23:51:11 +0200</pubDate><guid>https://mohamed.computer/posts/python-internals-cpython-bytecode/</guid><description>&lt;p>In this post, I am gonna walk you through compiling python code to CPython bytecode, what code objects are, how to construct them, how to disassemble them, and how to decompile them.&lt;/p>
+&lt;p>I will be using CPython 3.6.5.&lt;/p>
+&lt;h2 id="a-simple-example">A simple example&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#666">&amp;gt;&amp;gt;&amp;gt;&lt;/span> codestr &lt;span style="color:#666">=&lt;/span> &lt;span style="color:#4070a0">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4070a0">print(&amp;#39;Witness me!&amp;#39;)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4070a0">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#666">&amp;gt;&amp;gt;&amp;gt;&lt;/span> compiled_codestr &lt;span style="color:#666">=&lt;/span> &lt;span style="color:#007020">compile&lt;/span>(codestr, &lt;span style="color:#4070a0">&amp;#39;&amp;lt;string&amp;gt;&amp;#39;&lt;/span>, &lt;span style="color:#4070a0">&amp;#39;exec&amp;#39;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#666">&amp;gt;&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#007020">type&lt;/span>(compiled_codestr)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#666">&amp;lt;&lt;/span>&lt;span style="color:#007020;font-weight:bold">class&lt;/span> &lt;span style="">&amp;#39;&lt;/span>&lt;span style="color:#0e84b5;font-weight:bold">code&lt;/span>&lt;span style="color:#4070a0">&amp;#39;&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Whoo, we have created our first &lt;a href="https://docs.python.org/3.6/c-api/code.html">code object&lt;/a>.&lt;/p>
+&lt;p>We passed arguments to the &lt;a href="https://docs.python.org/3/library/functions.html#compile">compile function&lt;/a> as follows:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>codestr&lt;/code> is, as you might have guessed, our code as a string.&lt;/p></description></item><item><title>ADTs (Algebraic Data Types) in Haskell</title><link>https://mohamed.computer/posts/haskell-adts/</link><pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate><guid>https://mohamed.computer/posts/haskell-adts/</guid><description>&lt;p style="color: gray;">&lt;em>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to &lt;a href="https://www.reddit.com/r/haskell/comments/8ns3me/an_introduction_to_adts_algebraic_data_types_in/e01izuz/">e01izuz&lt;/a>&lt;/em>&lt;/p>
+&lt;br />
+&lt;p>Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. &lt;code>Bool&lt;/code> and &lt;code>Int&lt;/code>.&lt;/p>
+&lt;h2 id="single-constructor-without-arguments">Single Constructor Without Arguments&lt;/h2>
+&lt;p>One of the simplest datatypes we can construct in Haskell is a type with a single constructor,&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#007020;font-weight:bold">data&lt;/span> &lt;span style="color:#902000">Frame&lt;/span> &lt;span style="color:#007020;font-weight:bold">=&lt;/span> &lt;span style="color:#902000">MkFrame&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#06287e">x&lt;/span> &lt;span style="color:#007020;font-weight:bold">=&lt;/span> &lt;span style="color:#902000">MkFrame&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Examining the type in &lt;code>ghci&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>:&amp;gt; :type MkFrame
+MkFrame :: Frame
+
+:&amp;gt; :type x
+x :: Frame
+&lt;/code>&lt;/pre>&lt;p>In this example, we use the &lt;code>data&lt;/code> keyword to signify a &lt;strong>Data Type&lt;/strong>, &lt;code>Frame&lt;/code> is the name of that type and we refer to it as a &lt;strong>Type Constructor&lt;/strong>. &lt;code>MkFrame&lt;/code> is called a &lt;strong>Data Constructor&lt;/strong> and this is how we create new instances of the type &lt;code>Frame&lt;/code>.&lt;/p></description></item></channel></rss>

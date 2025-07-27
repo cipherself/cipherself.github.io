@@ -1,20 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Haskell on Mohamed Attia&#39;s Macrocosm</title>
-    <link>https://mohamed.computer/tags/haskell/</link>
-    <description>Recent content in Haskell on Mohamed Attia&#39;s Macrocosm</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>©️ Mohamed Attia</copyright>
-    <lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://mohamed.computer/tags/haskell/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>ADTs (Algebraic Data Types) in Haskell</title>
-      <link>https://mohamed.computer/posts/haskell-adts/</link>
-      <pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate>
-      <guid>https://mohamed.computer/posts/haskell-adts/</guid>
-      <description>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to e01izuz&#xA;Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. Bool and Int.&#xA;Single Constructor Without Arguments One of the simplest datatypes we can construct in Haskell is a type with a single constructor,&#xA;data Frame = MkFrame x = MkFrame Examining the type in ghci&#xA;:&amp;gt; :type MkFrame MkFrame :: Frame :&amp;gt; :type x x :: Frame In this example, we use the data keyword to signify a Data Type, Frame is the name of that type and we refer to it as a Type Constructor.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Haskell on Mohamed Attia's Macrocosm</title><link>https://mohamed.computer/tags/haskell/</link><description>Recent content in Haskell on Mohamed Attia's Macrocosm</description><generator>Hugo</generator><language>en-us</language><copyright>©️ Mohamed Attia</copyright><lastBuildDate>Wed, 30 May 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://mohamed.computer/tags/haskell/index.xml" rel="self" type="application/rss+xml"/><item><title>ADTs (Algebraic Data Types) in Haskell</title><link>https://mohamed.computer/posts/haskell-adts/</link><pubDate>Wed, 30 May 2018 00:00:00 +0000</pubDate><guid>https://mohamed.computer/posts/haskell-adts/</guid><description>&lt;p style="color: gray;">&lt;em>Update (2021-10-19) Correct inaccurate language referring to simple ADTs thanks to &lt;a href="https://www.reddit.com/r/haskell/comments/8ns3me/an_introduction_to_adts_algebraic_data_types_in/e01izuz/">e01izuz&lt;/a>&lt;/em>&lt;/p>
+&lt;br />
+&lt;p>Algebraic Data Types are a way for us to define types like the ones that come with Haskell e.g. &lt;code>Bool&lt;/code> and &lt;code>Int&lt;/code>.&lt;/p>
+&lt;h2 id="single-constructor-without-arguments">Single Constructor Without Arguments&lt;/h2>
+&lt;p>One of the simplest datatypes we can construct in Haskell is a type with a single constructor,&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-haskell" data-lang="haskell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#007020;font-weight:bold">data&lt;/span> &lt;span style="color:#902000">Frame&lt;/span> &lt;span style="color:#007020;font-weight:bold">=&lt;/span> &lt;span style="color:#902000">MkFrame&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#06287e">x&lt;/span> &lt;span style="color:#007020;font-weight:bold">=&lt;/span> &lt;span style="color:#902000">MkFrame&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Examining the type in &lt;code>ghci&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>:&amp;gt; :type MkFrame
+MkFrame :: Frame
+
+:&amp;gt; :type x
+x :: Frame
+&lt;/code>&lt;/pre>&lt;p>In this example, we use the &lt;code>data&lt;/code> keyword to signify a &lt;strong>Data Type&lt;/strong>, &lt;code>Frame&lt;/code> is the name of that type and we refer to it as a &lt;strong>Type Constructor&lt;/strong>. &lt;code>MkFrame&lt;/code> is called a &lt;strong>Data Constructor&lt;/strong> and this is how we create new instances of the type &lt;code>Frame&lt;/code>.&lt;/p></description></item></channel></rss>
