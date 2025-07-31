@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Mohamed Attia's Macrocosm</title><link>https://mohamed.computer/posts/</link><description>Recent content in Posts on Mohamed Attia's Macrocosm</description><generator>Hugo</generator><language>en-us</language><copyright>©️ Mohamed Attia</copyright><lastBuildDate>Sun, 27 Jul 2025 20:38:09 +0200</lastBuildDate><atom:link href="https://mohamed.computer/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Please Use HTML data-attributes</title><link>https://mohamed.computer/posts/please-use-html-data-attributes/</link><pubDate>Sun, 27 Jul 2025 20:38:09 +0200</pubDate><guid>https://mohamed.computer/posts/please-use-html-data-attributes/</guid><description>&lt;p>If you need to attach custom attributes to an &lt;code>HTMLElement&lt;/code> that you can also access from &lt;code>JavaScript&lt;/code> or &lt;code>CSS&lt;/code>,
 please use &lt;a href="https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes">&lt;code>data-attributes&lt;/code>&lt;/a>.&lt;/p>
-&lt;h1 id="html">HTML&lt;/h1>
+&lt;h2 id="html">HTML&lt;/h2>
 &lt;p>Let&amp;rsquo;s say you have a very simple gallery that has image thumbnails and it displays the full image
 when you click on a thumbnail and also displays a caption for the image, we can define this gallery
 in &lt;code>HTML&lt;/code> as follows:&lt;/p>
